@@ -1,0 +1,16 @@
+$bun_alh_app $mol_view
+	title \bun_alh
+	attr *
+		^
+		mol_theme \$mol_theme_light
+	Start_page $mol_view
+		sub /
+			<= Start_title $mol_view
+				dom_name \h1
+				sub / \bun_alh
+			<= Start_button $mol_button
+				title \Играть
+				click? <=> start? null
+	game? $bun_alh_game
+	Game_page $bun_alh_game_page
+		model <= game

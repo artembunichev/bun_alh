@@ -1,0 +1,22 @@
+$bun_alh_game_page $mol_view
+	model? $bun_alh_game
+	sub /
+		<= Title $mol_view
+			dom_name \h1
+			sub / \bun_alh
+		<= Field $mol_view
+			sub /
+				<= Known_Elements $mol_view
+					sub <= elements /
+						<= Element*0 $mol_view
+							sub /
+								<= Element_icon* $mol_image
+									uri <= element_icon* \
+									natural_width 64
+									natural_height 64
+									title <= element_name* \
+				<= Synth $mol_view
+					sub /
+						<= Cell_one $bun_alh_cell_synth
+						<= Cell_two $bun_alh_cell_synth
+						<= Cell_result $bun_alh_cell_synth_result
