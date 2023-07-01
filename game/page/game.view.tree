@@ -1,5 +1,7 @@
 $bun_alh_game_page $mol_view
-	model? $bun_alh_game
+	model $bun_alh_game
+	synth_list? /
+	current_dragged? null
 	sub /
 		<= Title $mol_view
 			dom_name \h1
@@ -8,15 +10,21 @@ $bun_alh_game_page $mol_view
 			sub /
 				<= Known_Elements $mol_view
 					sub <= elements /
-						<= Element*0 $mol_view
-							sub /
-								<= Element_icon* $mol_image
-									uri <= element_icon* \
-									natural_width 64
-									natural_height 64
-									title <= element_name* \
+						<= Element_cell*0 $bun_alh_cell_known
+							current_dragged? <=> current_dragged?
+							element_id <= element_id* \
+							element_icon <= element_icon* \
+							element_name <= element_name* \
 				<= Synth $mol_view
 					sub /
-						<= Cell_one $bun_alh_cell_synth
-						<= Cell_two $bun_alh_cell_synth
-						<= Cell_result $bun_alh_cell_synth_result
+						<= Cell_one $bun_alh_cell_synth_drop
+							ord 1
+							element_icon <= synth_element_icon_1 \
+							synth_list? <=> synth_list?
+							current_dragged? <=> current_dragged?
+						<= Cell_two $bun_alh_cell_synth_drop
+							ord 2
+							element_icon <= synth_element_icon_2 \
+							synth_list? <=> synth_list?
+							current_dragged? <=> current_dragged?
+						<= Cell_result $bun_alh_cell_result

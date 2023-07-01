@@ -1,7 +1,4 @@
-[ bun_alh_cell_synth ] {
-	width: 100px;
-	height: 100px;
+[ bun_alh_cell_synth_drop_cell ] {
 	margin: 0 15px;
 	background-color: #f2f3f5;
-	border-radius: 15px;
 }

@@ -1,0 +1,9 @@
+$bun_alh_cell_known $mol_drag
+	current_dragged? null
+	transfer *
+		text/plain <= element_id \
+		text/html <= element_name
+		text/uri-list \
+	Sub <= Cell $bun_alh_cell
+		element_icon <= element_icon \
+		element_name <= element_name

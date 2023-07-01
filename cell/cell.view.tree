@@ -1,1 +1,6 @@
 $bun_alh_cell $mol_view
+	Element_icon $mol_image
+		uri <= element_icon \
+		natural_width 64
+		natural_height 64
+		title <= element_name \

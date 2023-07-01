@@ -1,0 +1,5 @@
+[ bun_alh_cell_result ] {
+	background-color: var( --bun_alh_theme_main );
+	border: 2px solid var( --bun_alh_theme_border );
+	margin-left: 15px;
+}
