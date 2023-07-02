@@ -1,8 +1,10 @@
-$bun_alh_cell_synth_drop $mol_drop
+$bun_alh_cell_synth $mol_drop
 	ord 0
-	current_dragged? null
 	synth_list? /
 	adopt? <=> transfer_adopt? null
-	Sub <= Cell $bun_alh_cell
-		element_icon <= element_icon \
+	Sub <= Drag $bun_alh_cell_drag
+		element_id <= element_id \
 		element_name <= element_name \
+		element_icon <= element_icon \
+		current_dragged? <=> current_dragged? null
+		from_id \synth

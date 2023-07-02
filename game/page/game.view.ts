@@ -1,5 +1,7 @@
 namespace $.$$ {
 
+	type current_dragged = { id: string; from: string }
+
 	export class $bun_alh_game_page extends $.$bun_alh_game_page {
 
 		@ $mol_mem
@@ -19,28 +21,50 @@ namespace $.$$ {
 		}
 
 		@ $mol_mem
-		current_dragged( next?: string | null ) {
+		current_dragged( next?: current_dragged | null ) {
 			if ( next === undefined ) return null
 			if ( next === null ) return null
-			if ( this.model().element( next ) !== null ) {
+			if ( this.model().element( next.id ) !== null ) {
 				return next
 			}
 			return null
 		}
 
+		@ $mol_mem
+		cells_synth() {
+			return Array.from( { length: 2 }, ( _, i )=> this.Cell_synth( i ) )
+		}
+
+		@ $mol_mem_key
+		cell_synth_ord( ord: number ) {
+			return ord
+		}
+
 		@ $mol_mem_key
 		synth_element_id( ord: number ) {
-			return this.synth_list()[ ord ]
+			return this.synth_list()[ ord ] ?? ''
+		}
+
+		@ $mol_mem_key
+		synth_element_name( ord: number ) {
+			return this.element_name(
+				this.synth_list()[ ord ]
+			)
+		}
+
+		@ $mol_mem_key
+		synth_element_icon( ord: number ) {
+			return this.element_icon(
+				this.synth_list()[ ord ]
+			)
 		}
 
 		@ $mol_mem
-		synth_element_icon_1() {
-			return this.element_icon( this.synth_element_id( 0 ) )
-		}
-
-		@ $mol_mem
-		synth_element_icon_2() {
-			return this.element_icon( this.synth_element_id( 1 ) )
+		synth_sub() {
+			return [
+				... this.cells_synth(),
+				this.Cell_result(),
+			]
 		}
 
 	}

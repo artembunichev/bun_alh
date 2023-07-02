@@ -4,6 +4,7 @@ $bun_alh_game_page $mol_view
 		element_name* => element_name*
 		synth_list? => synth_list?
 	current_dragged? null
+	drag_from? null
 	sub /
 		<= Title $mol_view
 			dom_name \h1
@@ -18,15 +19,13 @@ $bun_alh_game_page $mol_view
 							element_icon <= element_icon* \
 							element_name <= element_name*
 				<= Synth $mol_view
-					sub /
-						<= Cell_one $bun_alh_cell_synth_drop
-							ord 1
-							element_icon <= synth_element_icon_1 \
-							synth_list? <=> synth_list?
-							current_dragged? <=> current_dragged?
-						<= Cell_two $bun_alh_cell_synth_drop
-							ord 2
-							element_icon <= synth_element_icon_2 \
-							synth_list? <=> synth_list?
-							current_dragged? <=> current_dragged?
+					sub <= synth_sub /
+						<= cells_synth /
+							<= Cell_synth*0 $bun_alh_cell_synth
+								ord <= cell_synth_ord* 0
+								synth_list? <=> synth_list?
+								current_dragged? <=> current_dragged?
+								element_id <= synth_element_id* \
+								element_icon <= synth_element_icon* \
+								element_name <= synth_element_name* \
 						<= Cell_result $bun_alh_cell_result
