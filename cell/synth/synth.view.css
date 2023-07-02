@@ -2,3 +2,7 @@
 	margin: 0 15px;
 	background-color: #f2f3f5;
 }
+
+[ bun_alh_cell_synth_drop_cell ][ mol_drop_status='drag' ] {
+	border: 12px solid var( --bun_alh_theme_border );
+}
