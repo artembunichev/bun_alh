@@ -2,7 +2,7 @@ namespace $.$$ {
 
 	$mol_style_define(
 
-		$bun_alh_cell,
+		$bun_alh_game_cell,
 		{
 
 			width: '100px',

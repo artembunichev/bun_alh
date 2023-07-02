@@ -1,6 +1,6 @@
 namespace $.$$ {
 
-	export class $bun_alh_cell_drag extends $.$bun_alh_cell_drag {
+	export class $bun_alh_game_cell_drag extends $.$bun_alh_game_cell_drag {
 
 		from_data() {
 			return undefined

@@ -1,4 +1,4 @@
-$bun_alh_cell $mol_view
+$bun_alh_game_cell $mol_view
 	Element_icon $mol_image
 		uri <= element_icon \
 		natural_width 64

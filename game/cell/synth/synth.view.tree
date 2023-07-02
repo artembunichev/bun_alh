@@ -1,8 +1,8 @@
-$bun_alh_cell_synth $mol_drop
+$bun_alh_game_cell_synth $mol_drop
 	ord 0
 	synth_list? /
 	adopt? <=> transfer_adopt? null
-	Sub <= Drag $bun_alh_cell_drag
+	Sub <= Drag $bun_alh_game_cell_drag
 		element_id <= element_id \
 		element_name <= element_name \
 		element_icon <= element_icon \

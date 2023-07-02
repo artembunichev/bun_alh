@@ -1,6 +1,6 @@
 namespace $.$$ {
 
-	export class $bun_alh_cell extends $.$bun_alh_cell {
+	export class $bun_alh_game_cell extends $.$bun_alh_game_cell {
 
 		@ $mol_mem
 		sub() {

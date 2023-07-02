@@ -2,7 +2,7 @@ namespace $.$$ {
 
 	$mol_style_define(
 
-		$bun_alh_cell_synth,
+		$bun_alh_game_cell_synth,
 		{
 
 			Drag: {

@@ -1,6 +1,6 @@
 namespace $.$$ {
 
-	export class $bun_alh_cell_synth extends $.$bun_alh_cell_synth {
+	export class $bun_alh_game_cell_synth extends $.$bun_alh_game_cell_synth {
 
 		drag_from_data() {
 			return { ord: this.ord() }

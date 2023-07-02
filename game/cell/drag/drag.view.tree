@@ -1,4 +1,4 @@
-$bun_alh_cell_drag $mol_drag
+$bun_alh_game_cell_drag $mol_drag
 	from_id \
 	from_data null
 	current_dragged? null
@@ -6,6 +6,6 @@ $bun_alh_cell_drag $mol_drag
 		text/plain <= element_id \
 		text/html <= element_name \
 		text/uri-list \
-	Sub <= Cell $bun_alh_cell
+	Sub <= Cell $bun_alh_game_cell
 		element_icon <= element_icon \
 		element_name <= element_name \

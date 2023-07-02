@@ -2,7 +2,7 @@ namespace $.$$ {
 
 	$mol_style_define(
 
-		$bun_alh_cell_known,
+		$bun_alh_game_cell_result,
 		{
 
 			background: {
@@ -12,6 +12,9 @@ namespace $.$$ {
 				width: '2px',
 				style: 'solid',
 				color: $bun_alh_theme.border,
+			},
+			margin: {
+				left: '15px',
 			},
 
 		},
