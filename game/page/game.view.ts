@@ -18,11 +18,6 @@ namespace $.$$ {
 			return this.model().element_icon( id )
 		}
 
-		@ $mol_mem_key
-		element_name( id: string ) {
-			return this.model().element_name( id )
-		}
-
 		@ $mol_mem
 		current_dragged( next?: string | null ) {
 			if ( next === undefined ) return null
@@ -31,11 +26,6 @@ namespace $.$$ {
 				return next
 			}
 			return null
-		}
-
-		@ $mol_mem
-		synth_list( next?: $bun_alh_game_synth_list ) {
-			return this.model().synth_list( next )
 		}
 
 		@ $mol_mem_key
