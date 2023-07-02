@@ -2,6 +2,10 @@ namespace $.$$ {
 
 	export class $bun_alh_cell_synth extends $.$bun_alh_cell_synth {
 
+		drag_from_data() {
+			return { ord: this.ord() }
+		}
+
 		transfer_adopt( transfer: DataTransfer ) {
 			var element_id = transfer.getData( 'text/plain' )
 
@@ -9,7 +13,7 @@ namespace $.$$ {
 		}
 
 		receive( element_id: string ) {
-			if ( element_id === this.current_dragged().id ) {
+			if ( element_id === this.current_dragged()?.id ) {
 
 				if ( this.element_id() === this.current_dragged().id ) {
 					return

@@ -8,3 +8,4 @@ $bun_alh_cell_synth $mol_drop
 		element_icon <= element_icon \
 		current_dragged? <=> current_dragged? null
 		from_id \synth
+		from_data <= drag_from_data null

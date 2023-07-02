@@ -1,5 +1,6 @@
 $bun_alh_cell_drag $mol_drag
 	from_id \
+	from_data null
 	current_dragged? null
 	transfer *
 		text/plain <= element_id \

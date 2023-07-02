@@ -1,6 +1,6 @@
 namespace $.$$ {
 
-	type current_dragged = { id: string; from: string }
+	type current_dragged = { id: string; from: string; data: any }
 
 	export class $bun_alh_game_page extends $.$bun_alh_game_page {
 
@@ -28,6 +28,29 @@ namespace $.$$ {
 				return next
 			}
 			return null
+		}
+
+		@ $mol_action
+		field_adopt( transfer: DataTransfer ) {
+			return transfer.getData( 'text/plain' )
+		}
+
+		@ $mol_action
+		field_receive( element_id: string ) {
+			if ( element_id === this.current_dragged()?.id ) {
+
+				if ( this.current_dragged()?.from === 'synth' ) {
+					this.synth_list(
+						$bun_array_overwrite(
+							this.synth_list(),
+							this.current_dragged()?.data.ord,
+							null,
+						)
+					)
+				}
+
+			}
+
 		}
 
 		@ $mol_mem

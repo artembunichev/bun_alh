@@ -9,8 +9,10 @@ $bun_alh_game_page $mol_view
 		<= Title $mol_view
 			dom_name \h1
 			sub / \bun_alh
-		<= Field $mol_view
-			sub /
+		<= Field_drop $mol_drop
+			adopt? <=> field_adopt? null
+			receive? <=> field_receive? null
+			Sub <= Field $mol_view sub /
 				<= Known_Elements $mol_view
 					sub <= elements /
 						<= Element_cell*0 $bun_alh_cell_known
