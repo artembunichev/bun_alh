@@ -41,7 +41,7 @@ namespace $.$$ {
 
 				if ( this.current_dragged()?.from === 'synth' ) {
 					this.synth_list(
-						$bun_array_overwrite(
+						$bun_array_write(
 							this.synth_list(),
 							this.current_dragged()?.data.ord,
 							null,

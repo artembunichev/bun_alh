@@ -33,7 +33,7 @@ namespace $.$$ {
 				else {
 
 					this.synth_list(
-						$bun_array_overwrite(
+						$bun_array_write(
 							this.synth_list(),
 							this.ord(),
 							element_id,
