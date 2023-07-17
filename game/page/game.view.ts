@@ -21,7 +21,7 @@ namespace $.$$ {
 		}
 
 		element_size() {
-			return 64
+			return 125
 		}
 
 		@ $mol_mem

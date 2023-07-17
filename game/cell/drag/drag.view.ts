@@ -75,7 +75,7 @@ namespace $.$$ {
 			if ( this.element_id() ) {
 				super.drag_start( e )
 
-				e.dataTransfer.setDragImage( this.drag_image(), this.drag_image_offset(), this.drag_image_offset() )
+				e.dataTransfer?.setDragImage( this.drag_image(), this.drag_image_offset(), this.drag_image_offset() )
 				this.current_dragged( { id: this.element_id(), from: this.from_id(), data: this.from_data() } )
 			}
 			else {
