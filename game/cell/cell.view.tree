@@ -1,6 +1,11 @@
 $bun_alh_game_cell $mol_view
+	element_size 64
+	size 64
+	style *
+		width <= size
+		height <= size
 	Element_icon $mol_image
 		uri <= element_icon \
-		natural_width 64
-		natural_height 64
+		natural_width <= element_size
+		natural_height <= element_size
 		title <= element_name \

@@ -6,6 +6,7 @@ $bun_alh_game_cell_synth $mol_drop
 		element_id <= element_id \
 		element_name <= element_name \
 		element_icon <= element_icon \
+		element_size <= element_size 0
 		current_dragged? <=> current_dragged? null
 		from_id \synth
 		from_data <= drag_from_data null

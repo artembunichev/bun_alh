@@ -20,6 +20,7 @@ $bun_alh_game_page $mol_view
 							element_id <= element_id* \
 							element_icon <= element_icon* \
 							element_name <= element_name*
+							element_size <= element_size 0
 				<= Synth $mol_view
 					sub <= synth_sub /
 						<= cells_synth /
@@ -30,4 +31,6 @@ $bun_alh_game_page $mol_view
 								element_id <= synth_element_id* \
 								element_icon <= synth_element_icon* \
 								element_name <= synth_element_name* \
+								element_size <= element_size
 						<= Cell_result $bun_alh_game_cell_result
+							element_size <= element_size

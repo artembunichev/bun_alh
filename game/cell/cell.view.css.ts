@@ -5,8 +5,6 @@ namespace $.$$ {
 		$bun_alh_game_cell,
 		{
 
-			width: '100px',
-			height: '100px',
 			justify: {
 				content: 'center'
 			},

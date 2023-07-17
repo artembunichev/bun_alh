@@ -20,6 +20,10 @@ namespace $.$$ {
 			return this.model().element_icon( id )
 		}
 
+		element_size() {
+			return 64
+		}
+
 		@ $mol_mem
 		current_dragged( next?: current_dragged | null ) {
 			if ( next === undefined ) return null

@@ -9,3 +9,4 @@ $bun_alh_game_cell_drag $mol_drag
 	Sub <= Cell $bun_alh_game_cell
 		element_icon <= element_icon \
 		element_name <= element_name \
+		element_size <= element_size 0
