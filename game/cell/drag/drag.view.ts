@@ -45,7 +45,7 @@ namespace $.$$ {
 					canvas.width = this.element_size()
 					canvas.height = this.element_size()
 
-					var ctx = canvas.getContext( '2d' )
+					var ctx = canvas.getContext( '2d' )!
 
 					var img_source = new Image()
 					img_source.src = this.element_icon()
