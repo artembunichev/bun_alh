@@ -14,13 +14,15 @@ $bun_alh_game_page $mol_view
 			receive? <=> field_receive? null
 			Sub <= Field $mol_view sub /
 				<= Known_elements $mol_view
-					sub <= elements /
-						<= Element_cell*0 $bun_alh_game_cell_known
-							current_dragged? <=> current_dragged?
-							element_id <= element_id* \
-							element_icon <= element_icon* \
-							element_name <= element_name*
-							element_size <= element_size 0
+					sub /
+						<= Known_elements_scroll $bun_scroll_hor
+							sub <= elements /
+								<= Element_cell*0 $bun_alh_game_cell_known
+									current_dragged? <=> current_dragged?
+									element_id <= element_id* \
+									element_icon <= element_icon* \
+									element_name <= element_name*
+									element_size <= element_size 0
 				<= Synth $mol_view
 					sub <= synth_sub /
 						<= cells_synth /

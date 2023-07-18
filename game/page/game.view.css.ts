@@ -39,16 +39,39 @@ namespace $.$$ {
 
 			Known_elements: {
 
+				maxWidth: '100%',
 				padding: '15px',
 				background: {
 					color: $bun_alh_theme.main_light,
 				},
 				border: {
-					width: '2px',
+					width: '6px',
 					style: 'solid',
 					color: $bun_alh_theme.border,
 					radius: '15px',
 				},
+
+			},
+
+			Known_elements_scroll: {
+
+				maxWidth: '100%',
+				overflow: {
+					x: 'auto',
+				},
+				'::-webkit-scrollbar': {
+					height: '7px',
+					background: {
+						color: $bun_alh_theme.scroll_back,
+					},
+				},
+				'::-webkit-scrollbar-thumb': {
+					background: {
+						color: $bun_alh_theme.scroll_thumb,
+					},
+					borderRadius: '15px',
+				},
+				paddingBottom: '7px',
 
 			},
 
