@@ -5,23 +5,7 @@ namespace $ {
 	export class $bun_alh_game extends $mol_object {
 
 		element_list(): Array< $bun_alh_game_element > {
-			return [
-				{ id: 'water', name: 'Вода' },
-				{ id: 'fire', name: 'Огонь' },
-				{ id: 'air',  name: 'Воздух' },
-				{ id: 'earth',  name: 'Земля' },
-				{ id: 'steam',  name: 'Пар' },
-				{ id: 'energy',  name: 'Энергия' },
-				{ id: 'dust',  name: 'Пыль' },
-				{ id: 'cloud', name: 'Облако' },
-				{ id: 'lava',  name: 'Лава' },
-				{ id: 'mud', name: 'Грязь' },
-				{ id: 'ocean', name: 'Океан' },
-				{ id: 'pressure', name: 'Давление' },
-				{ id: 'rain', name: 'Дождь' },
-				{ id: 'sea', name: 'Море' },
-				{ id: 'volcano', name: 'Вулкан' },
-			]
+			return $bun_alh_game_elements
 		}
 
 		@ $mol_mem_key
@@ -41,7 +25,7 @@ namespace $ {
 
 		@ $mol_mem
 		element_ids_known( next?: Array< string > ) {
-			return next ?? this.element_list().map( ( { id } ) => id )
+			return next ?? [ 'water', 'fire', 'air', 'earth' ]
 		}
 
 		@ $mol_mem
