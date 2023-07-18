@@ -49,12 +49,18 @@ namespace $.$$ {
 							this.synth_list(),
 							this.current_dragged()?.data.ord,
 							null,
-						)
+						) as $bun_alh_game_synth_list
 					)
 				}
 
 			}
 
+		}
+
+		@ $mol_mem
+		synth_list( next?: $bun_alh_game_synth_list ) {
+			this.result_element_id( null )
+			return this.model().synth_list( next )
 		}
 
 		@ $mol_mem
@@ -92,6 +98,37 @@ namespace $.$$ {
 				... this.cells_synth(),
 				this.Cell_result(),
 			]
+		}
+
+		@ $mol_action
+		combine() {
+			var result_element_id =
+				this.model().combine(
+					... this.synth_list()
+				)
+
+			this.result_element_id(
+				result_element_id
+			)
+		}
+
+		@ $mol_mem
+		result_element_id( next?: string | null ): string | null {
+			return next ?? null
+		}
+
+		@ $mol_mem
+		result_element_icon() {
+			return this.element_icon(
+				this.result_element_id()
+			)
+		}
+
+		@ $mol_mem
+		result_element_name() {
+			return this.element_name(
+				this.result_element_id()
+			)
 		}
 
 	}

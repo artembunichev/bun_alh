@@ -49,6 +49,13 @@ namespace $ {
 			return next ?? [ null, null ]
 		}
 
+		@ $mol_mem_key
+		combine( ... elements: $bun_alh_game_ings_nullable ) {
+			return $bun_alh_game_combine(
+				... elements
+			)
+		}
+
 	}
 
 }

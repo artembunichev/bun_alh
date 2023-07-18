@@ -2,8 +2,8 @@ $bun_alh_game_page $mol_view
 	model $bun_alh_game
 		element* => element*
 		element_name* => element_name*
-		synth_list? => synth_list?
 	current_dragged? null
+	synth_list? null
 	drag_from? null
 	sub /
 		<= Title $mol_view
@@ -35,4 +35,8 @@ $bun_alh_game_page $mol_view
 								element_name <= synth_element_name* \
 								element_size <= element_size
 						<= Cell_result $bun_alh_game_cell_result
+							event *
+								click? <=> combine? null
+							element_name <= result_element_name \
+							element_icon <= result_element_icon \
 							element_size <= element_size
