@@ -16,11 +16,7 @@ namespace $.$$ {
 					mol_drop_status: {
 						drag: {
 
-							border: {
-								width: '12px',
-								style: 'solid',
-								color: $bun_alh_theme.border,
-							},
+							boxShadow: '0 0 19px 11px var( --bun_alh_theme_border )'
 
 						},
 					},
