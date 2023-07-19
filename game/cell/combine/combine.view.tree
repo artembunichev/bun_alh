@@ -2,8 +2,11 @@ $bun_alh_game_cell_combine $mol_drop
 	ord 0
 	combine_list? /
 	adopt? <=> transfer_adopt? null
+	event *
+		^
+		dblclick? <=> clear? null
 	Sub <= Drag $bun_alh_game_cell_drag
-		element_id <= element_id \
+		element_id <= element_id? null
 		element_name <= element_name \
 		element_icon <= element_icon \
 		element_size <= element_size 0

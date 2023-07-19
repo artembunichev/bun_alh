@@ -45,6 +45,10 @@ namespace $.$$ {
 			}
 		}
 
+		@ $mol_action
+		clear() {
+			this.element_id( null )
+		}
 
 	}
 

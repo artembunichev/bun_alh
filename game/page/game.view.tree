@@ -30,7 +30,7 @@ $bun_alh_game_page $mol_view
 								ord <= cell_combine_ord* 0
 								combine_list? <=> combine_list?
 								current_dragged? <=> current_dragged?
-								element_id <= combine_element_id* \
+								element_id? <=> combine_element_id*? null
 								element_icon <= combine_element_icon* \
 								element_name <= combine_element_name* \
 								element_size <= element_size

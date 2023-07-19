@@ -49,12 +49,9 @@ namespace $.$$ {
 			if ( element_id === this.current_dragged()?.id ) {
 
 				if ( this.current_dragged()?.from === 'combine' ) {
-					this.combine_list(
-						$bun_array_write(
-							this.combine_list(),
-							this.current_dragged()?.data.ord,
-							null,
-						) as $bun_alh_game_combine_list
+					this.combine_element_id(
+						this.current_dragged()?.data.ord,
+						null,
 					)
 				}
 
@@ -79,7 +76,16 @@ namespace $.$$ {
 		}
 
 		@ $mol_mem_key
-		combine_element_id( ord: number ) {
+		combine_element_id( ord: number, next?: string | null ) {
+			if ( next !== undefined ) {
+				this.combine_list(
+					$bun_array_write(
+						this.combine_list(),
+						ord,
+						next,
+					) as $bun_alh_game_combine_list
+				)
+			}
 			return this.combine_list()[ ord ] ?? ''
 		}
 
