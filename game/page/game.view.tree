@@ -36,7 +36,7 @@ $bun_alh_game_page $mol_view
 								element_size <= element_size
 						<= Cell_result $bun_alh_game_cell_result
 							event *
-								click? <=> combine? null
+								click? <=> on_result_click? null
 							element_name <= result_element_name \
 							element_icon <= result_element_icon \
 							element_size <= element_size

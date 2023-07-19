@@ -5,8 +5,13 @@ namespace $.$$ {
 	export class $bun_alh_game_page extends $.$bun_alh_game_page {
 
 		@ $mol_mem
+		element_ids_known( next?: Array< string > ) {
+			return this.model().element_ids_known( next )
+		}
+
+		@ $mol_mem
 		elements() {
-			return this.model().element_ids_known().map( id => this.Element_cell( id ) )
+			return this.element_ids_known().map( id => this.Element_cell( id ) )
 		}
 
 		@ $mol_mem_key
@@ -129,6 +134,37 @@ namespace $.$$ {
 			return this.element_name(
 				this.result_element_id()
 			)
+		}
+
+		@ $mol_action
+		clear_combine_list() {
+			this.combine_list( [ null, null ] )
+		}
+
+		@ $mol_action
+		know_element( element_id: string ) {
+			this.element_ids_known(
+				[
+					... this.element_ids_known(),
+					element_id,
+				]
+			)
+		}
+
+		@ $mol_action
+		grab_element( element_id: string ) {
+			this.know_element( element_id )
+			this.clear_combine_list()
+		}
+
+		@ $mol_action
+		on_result_click() {
+			if ( !this.result_element_id() ) {
+				this.combine()
+			}
+			else {
+				this.grab_element( this.result_element_id()! )
+			}
 		}
 
 	}
