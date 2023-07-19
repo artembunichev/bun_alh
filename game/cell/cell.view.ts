@@ -4,13 +4,13 @@ namespace $.$$ {
 
 		@ $mol_mem
 		size() {
-			return this.element_size() + 30
+			return this.element_size() + 50
 		}
 
 		@ $mol_mem
 		sub() {
 			return [
-				... this.element_icon() ? [ this.Element_icon() ] : [],
+				... this.element_icon() ? [ this.Element_icon(), this.Element_title() ] : [],
 			]
 		}
 

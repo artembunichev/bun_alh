@@ -9,3 +9,5 @@ $bun_alh_game_cell $mol_view
 		natural_width <= element_size
 		natural_height <= element_size
 		title <= element_name \
+	Element_title $mol_view
+		sub / <= element_name
