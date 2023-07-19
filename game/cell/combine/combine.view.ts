@@ -1,6 +1,6 @@
 namespace $.$$ {
 
-	export class $bun_alh_game_cell_synth extends $.$bun_alh_game_cell_synth {
+	export class $bun_alh_game_cell_combine extends $.$bun_alh_game_cell_combine {
 
 		drag_from_data() {
 			return { ord: this.ord() }
@@ -19,11 +19,11 @@ namespace $.$$ {
 					return
 				}
 
-				if ( this.current_dragged().from === 'synth' ) {
+				if ( this.current_dragged().from === 'combine' ) {
 
-					this.synth_list(
+					this.combine_list(
 						$bun_array_swap(
-							this.synth_list(),
+							this.combine_list(),
 							0,
 							1,
 						)
@@ -32,9 +32,9 @@ namespace $.$$ {
 				}
 				else {
 
-					this.synth_list(
+					this.combine_list(
 						$bun_array_write(
-							this.synth_list(),
+							this.combine_list(),
 							this.ord(),
 							element_id,
 						)

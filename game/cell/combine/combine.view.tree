@@ -1,6 +1,6 @@
-$bun_alh_game_cell_synth $mol_drop
+$bun_alh_game_cell_combine $mol_drop
 	ord 0
-	synth_list? /
+	combine_list? /
 	adopt? <=> transfer_adopt? null
 	Sub <= Drag $bun_alh_game_cell_drag
 		element_id <= element_id \
@@ -8,5 +8,5 @@ $bun_alh_game_cell_synth $mol_drop
 		element_icon <= element_icon \
 		element_size <= element_size 0
 		current_dragged? <=> current_dragged? null
-		from_id \synth
+		from_id \combine
 		from_data <= drag_from_data null

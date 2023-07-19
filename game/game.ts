@@ -1,6 +1,6 @@
 namespace $ {
 
-	export type $bun_alh_game_synth_list = [ string | null, string | null ]
+	export type $bun_alh_game_combine_list = [ string | null, string | null ]
 
 	export class $bun_alh_game extends $mol_object {
 
@@ -29,7 +29,7 @@ namespace $ {
 		}
 
 		@ $mol_mem
-		synth_list( next?: $bun_alh_game_synth_list ) {
+		combine_list( next?: $bun_alh_game_combine_list ) {
 			return next ?? [ null, null ]
 		}
 

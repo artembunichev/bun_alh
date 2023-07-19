@@ -75,7 +75,7 @@ namespace $.$$ {
 
 			},
 
-			Synth: {
+			Combine: {
 
 				flex: {
 					grow: 1,

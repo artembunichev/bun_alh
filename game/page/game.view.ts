@@ -43,13 +43,13 @@ namespace $.$$ {
 		field_receive( element_id: string ) {
 			if ( element_id === this.current_dragged()?.id ) {
 
-				if ( this.current_dragged()?.from === 'synth' ) {
-					this.synth_list(
+				if ( this.current_dragged()?.from === 'combine' ) {
+					this.combine_list(
 						$bun_array_write(
-							this.synth_list(),
+							this.combine_list(),
 							this.current_dragged()?.data.ord,
 							null,
-						) as $bun_alh_game_synth_list
+						) as $bun_alh_game_combine_list
 					)
 				}
 
@@ -58,44 +58,44 @@ namespace $.$$ {
 		}
 
 		@ $mol_mem
-		synth_list( next?: $bun_alh_game_synth_list ) {
+		combine_list( next?: $bun_alh_game_combine_list ) {
 			this.result_element_id( null )
-			return this.model().synth_list( next )
+			return this.model().combine_list( next )
 		}
 
 		@ $mol_mem
-		cells_synth() {
-			return Array.from( { length: 2 }, ( _, i )=> this.Cell_synth( i ) )
+		cells_combine() {
+			return Array.from( { length: 2 }, ( _, i )=> this.Cell_combine( i ) )
 		}
 
 		@ $mol_mem_key
-		cell_synth_ord( ord: number ) {
+		cell_combine_ord( ord: number ) {
 			return ord
 		}
 
 		@ $mol_mem_key
-		synth_element_id( ord: number ) {
-			return this.synth_list()[ ord ] ?? ''
+		combine_element_id( ord: number ) {
+			return this.combine_list()[ ord ] ?? ''
 		}
 
 		@ $mol_mem_key
-		synth_element_name( ord: number ) {
+		combine_element_name( ord: number ) {
 			return this.element_name(
-				this.synth_list()[ ord ]
+				this.combine_list()[ ord ]
 			)
 		}
 
 		@ $mol_mem_key
-		synth_element_icon( ord: number ) {
+		combine_element_icon( ord: number ) {
 			return this.element_icon(
-				this.synth_list()[ ord ]
+				this.combine_list()[ ord ]
 			)
 		}
 
 		@ $mol_mem
-		synth_sub() {
+		combine_sub() {
 			return [
-				... this.cells_synth(),
+				... this.cells_combine(),
 				this.Cell_result(),
 			]
 		}
@@ -104,7 +104,7 @@ namespace $.$$ {
 		combine() {
 			var result_element_id =
 				this.model().combine(
-					... this.synth_list()
+					... this.combine_list()
 				)
 
 			this.result_element_id(
