@@ -1,15 +1,1 @@
-deploy \/bun/alh/icons/fire.svg
-deploy \/bun/alh/icons/water.svg
-deploy \/bun/alh/icons/earth.svg
-deploy \/bun/alh/icons/air.svg
-deploy \/bun/alh/icons/steam.svg
-deploy \/bun/alh/icons/lava.svg
-deploy \/bun/alh/icons/pressure.svg
-deploy \/bun/alh/icons/volcano.svg
-deploy \/bun/alh/icons/sea.svg
-deploy \/bun/alh/icons/ocean.svg
-deploy \/bun/alh/icons/energy.svg
-deploy \/bun/alh/icons/mud.svg
-deploy \/bun/alh/icons/rain.svg
-deploy \/bun/alh/icons/dust.svg
-deploy \/bun/alh/icons/cloud.svg
+deploy \/bun/alh/icons
