@@ -111,6 +111,12 @@ namespace $.$$ {
 			]
 		}
 
+		@ $mol_mem_key
+		element_useless( element_id: string | null | undefined ) {
+			if ( !element_id ) return false
+			return this.element_ids_known().includes( element_id )
+		}
+
 		@ $mol_action
 		combine() {
 			var result_element_id =
@@ -125,6 +131,7 @@ namespace $.$$ {
 
 		@ $mol_mem
 		result_element_id( next?: string | null ): string | null {
+			this.result_useless( this.element_useless( next ) )
 			return next ?? null
 		}
 
@@ -159,8 +166,10 @@ namespace $.$$ {
 
 		@ $mol_action
 		grab_element( element_id: string ) {
-			this.know_element( element_id )
-			this.clear_combine_list()
+			if ( !this.element_useless( element_id ) ) {
+				this.know_element( element_id )
+				this.clear_combine_list()
+			}
 		}
 
 		@ $mol_action
