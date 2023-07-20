@@ -10,7 +10,7 @@ namespace $ {
 
 		@ $mol_mem_key
 		element( id: string ) {
-			return this.element_list().find( ( el )=> el.id === id )! ?? null
+			return this.element_list().find( ( el )=> el.id === id ) ?? null
 		}
 
 		@ $mol_mem_key
@@ -20,7 +20,7 @@ namespace $ {
 
 		@ $mol_mem_key
 		element_name( id: string ) {
-			return this.element( id ).name
+			return this.element( id )?.name ?? ''
 		}
 
 		@ $mol_mem

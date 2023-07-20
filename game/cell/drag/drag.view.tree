@@ -7,6 +7,7 @@ $bun_alh_game_cell_drag $mol_drag
 		text/html <= element_name \
 		text/uri-list \
 	Sub <= Cell $bun_alh_game_cell
+		hint <= hint <= element_name \
 		element_icon <= element_icon \
-		element_name <= element_name \
+		element_name <= element_name
 		element_size <= element_size 0

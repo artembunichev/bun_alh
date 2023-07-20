@@ -6,7 +6,7 @@ namespace $.$$ {
 		hint() {
 			return this.useless()
 				? 'Вы уже изучили этот элемент'
-				: ''
+				: this.element_name()
 		}
 
 	}

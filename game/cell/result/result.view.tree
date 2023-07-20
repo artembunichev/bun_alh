@@ -3,4 +3,3 @@ $bun_alh_game_cell_result $bun_alh_game_cell
 	attr *
 		^
 		useless <= useless
-		title <= hint \
