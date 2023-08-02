@@ -1,2 +1,6 @@
 $bun_alh_game_cell_known $bun_alh_game_cell_drag
+	combine_list? null
+	event *
+		^
+		dblclick? <=> add_element_to_empty_combine_cell? null
 	from_id \known
