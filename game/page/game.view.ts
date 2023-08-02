@@ -3,6 +3,30 @@ namespace $.$$ {
 	type current_dragged = { id: string; from: string; data: any }
 
 	export class $bun_alh_game_page extends $.$bun_alh_game_page {
+		
+		auto() {
+			this.on_game_open()
+		}
+		
+		@ $mol_action
+		on_game_open() {
+			
+			this.element_ids_known(
+				$mol_state_local.value(
+					'ids_known'
+				)!
+			)
+			
+			window.addEventListener( 'beforeunload' , ()=> this.on_game_close() )
+			
+		}
+		
+		on_game_close() {
+			$mol_state_local.value(
+				'ids_known' ,
+				this.element_ids_known()
+			)			
+		}
 
 		@ $mol_mem
 		element_ids_known( next?: Array< string > ) {

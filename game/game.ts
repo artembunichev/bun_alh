@@ -24,13 +24,12 @@ namespace $ {
 		}
 
 		@ $mol_mem
-		element_ids_known( next?: Array< string > ) {
-			return $mol_state_local.value(
-				'ids_known',
-				next
-			)
-			??
-			[ 'water', 'fire', 'air', 'earth' ]
+		element_ids_known( next?: Array< string > ) {			
+			if( next ) {
+				$mol_state_local.value( 'ids_known' , next )	
+			}
+			
+			return next ?? [ 'water', 'fire', 'air', 'earth' ]
 		}
 
 		@ $mol_mem
