@@ -11,6 +11,11 @@ $bun_alh_app $mol_view
 					<= Start_button $bun_alh_app_menu_button
 						title \Играть
 						click? <=> play? null
+					<= Controls_button $bun_alh_app_menu_button
+						title \Управление
+						click? <=> open_controls_page? null
+	Controls_page $bun_alh_controls_page
+		app_page? <=> page?
 	game? $bun_alh_game
 	Game_page $bun_alh_game_page
 		model <= game

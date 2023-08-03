@@ -1,0 +1,25 @@
+$bun_alh_controls_page $bun_alh_page
+	app_page? \
+	title \Управление
+	with_back true
+	back? <=> open_start_page? null
+	back_hint \Назад в меню
+	content /
+		<= Page_content $mol_view sub /
+			<= Board $bun_alh_board
+				title \Управление элементами в bun_alh
+				content /
+					<= Board_content $mol_view sub /
+						<= Ways_title $mol_view
+							sub /
+								\В bun_alh существует два способа управления элементами:
+						<= Way_list $mol_view
+							dom_name \ul
+							sub <= way_list /
+								<= Way*0 $mol_view
+									dom_name \li
+									sub /
+										<= Way_title* $mol_view
+											sub / <= way_title* \
+										<= Way_description* $mol_view
+											sub / <= way_description* \

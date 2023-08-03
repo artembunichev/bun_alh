@@ -1,0 +1,6 @@
+$bun_alh_board $mol_view
+	sub /
+		<= Title $mol_view
+			sub / <= title
+		<= Content $mol_view
+			sub <= content /

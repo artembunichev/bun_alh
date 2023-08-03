@@ -4,6 +4,7 @@ namespace $.$$ {
 
 	type Page =
 		| 'start'
+		| 'controls'
 		| 'game'
 
 	export class $bun_alh_app extends $.$bun_alh_app {
@@ -25,8 +26,8 @@ namespace $.$$ {
 		}
 		
 		@ $mol_action
-		open_start_page() {
-			this.page( 'start' )
+		open_controls_page() {
+			this.page( 'controls' )
 		}
 
 		@ $mol_mem
@@ -35,6 +36,10 @@ namespace $.$$ {
 			
 			if( this.page() === 'start' ) {
 				current_page = this.Start_page()
+			}
+			
+			if( this.page() === 'controls' ) {
+				current_page = this.Controls_page()
 			}
 			
 			if( this.page() === 'game' ) {
