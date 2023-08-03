@@ -1,0 +1,18 @@
+$bun_alh_page $mol_view
+	with_back false
+	sub /
+		<= Head_container $mol_view
+			sub <= Head_container_sub /
+				<= Back_button $bun_alh_page_button_back
+					back? <=> back? null
+					hint <= back_hint \
+				<= Head_title $mol_view
+					dom_name \h1
+					sub / <= title
+		<= Content $mol_view
+			sub <= content /
+
+$bun_alh_page_button_back $mol_button
+	sub / <= Icon $mol_icon_arrow_left
+	click? <=> back? null
+	hint \Назад

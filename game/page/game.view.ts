@@ -27,6 +27,11 @@ namespace $.$$ {
 				this.element_ids_known()
 			)			
 		}
+		
+		@ $mol_action
+		open_start_page() {
+			this.app_page( 'start' )
+		}
 
 		@ $mol_mem
 		element_ids_known( next?: Array< string > ) {

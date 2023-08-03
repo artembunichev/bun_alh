@@ -4,23 +4,7 @@ namespace $.$$ {
 
 		$bun_alh_game_page,
 		{
-
-			flex: {
-				grow: 1,
-				shrink: 0,
-				basis: 0,
-
-				direction: 'column',
-			},
-
-			Title: {
-
-				justify: {
-					content: 'center',
-				},
-
-			},
-
+			
 			Field: {
 
 				flex: {

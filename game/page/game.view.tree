@@ -1,14 +1,16 @@
-$bun_alh_game_page $mol_view
+$bun_alh_game_page $bun_alh_page
+	app_page? \
+	title \bun_alh
+	with_back true
+	back? <=> open_start_page? null
+	back_hint \Назад в меню
 	model $bun_alh_game
 		element* => element*
 		element_name* => element_name*
 	current_dragged? null
 	combine_list? null
 	drag_from? null
-	sub /
-		<= Title $mol_view
-			dom_name \h1
-			sub / \bun_alh
+	content /
 		<= Field_drop $mol_drop
 			adopt? <=> field_adopt? null
 			receive? <=> field_receive? null
