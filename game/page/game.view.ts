@@ -90,7 +90,6 @@ namespace $.$$ {
 
 		@ $mol_mem
 		combine_list( next?: $bun_alh_game_combine_list ) {
-			this.result_element_id( null )
 			return this.model().combine_list( next )
 		}
 
@@ -146,22 +145,18 @@ namespace $.$$ {
 			return this.element_ids_known().includes( element_id )
 		}
 
-		@ $mol_action
-		combine() {
-			var result_element_id =
-				this.model().combine(
-					... this.combine_list()
-				)
-
-			this.result_element_id(
-				result_element_id
-			)
-		}
-
 		@ $mol_mem
-		result_element_id( next?: string | null ): string | null {
-			this.result_useless( this.element_useless( next ) )
-			return next ?? null
+		result_element_id() {
+			return this.model().combine(
+				... this.combine_list()
+			)
+			??
+			null
+		}
+		
+		@ $mol_mem
+		result_useless() {
+			return this.element_useless( this.result_element_id() )
 		}
 
 		@ $mol_mem
@@ -203,10 +198,7 @@ namespace $.$$ {
 
 		@ $mol_action
 		on_result_click() {
-			if ( !this.result_element_id() ) {
-				this.combine()
-			}
-			else {
+			if ( this.result_element_id() ) {
 				this.grab_element( this.result_element_id()! )
 			}
 		}
