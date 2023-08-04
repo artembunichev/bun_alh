@@ -1,1 +1,5 @@
 $bun_alh_game_cell_result $bun_alh_game_cell
+	useless? false
+	attr *
+		^
+		useless <= useless

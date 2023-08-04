@@ -1,14 +1,16 @@
-$bun_alh_game_page $mol_view
+$bun_alh_game_page $bun_alh_page
+	app_page? \
+	title \bun_alh
+	with_back true
+	back? <=> open_start_page? null
+	back_hint \Назад в меню
 	model $bun_alh_game
 		element* => element*
 		element_name* => element_name*
 	current_dragged? null
 	combine_list? null
 	drag_from? null
-	sub /
-		<= Title $mol_view
-			dom_name \h1
-			sub / \bun_alh
+	content /
 		<= Field_drop $mol_drop
 			adopt? <=> field_adopt? null
 			receive? <=> field_receive? null
@@ -19,6 +21,7 @@ $bun_alh_game_page $mol_view
 							sub <= elements /
 								<= Element_cell*0 $bun_alh_game_cell_known
 									current_dragged? <=> current_dragged?
+									combine_list? <=> combine_list?
 									element_id <= element_id* \
 									element_icon <= element_icon* \
 									element_name <= element_name*
@@ -35,8 +38,9 @@ $bun_alh_game_page $mol_view
 								element_name <= combine_element_name* \
 								element_size <= element_size
 						<= Cell_result $bun_alh_game_cell_result
-							event *
-								click? <=> on_result_click? null
 							element_name <= result_element_name \
 							element_icon <= result_element_icon \
 							element_size <= element_size
+							useless <= result_useless? false
+							event *
+								click? <=> on_result_click? null

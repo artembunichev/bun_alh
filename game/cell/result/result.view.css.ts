@@ -17,6 +17,47 @@ namespace $.$$ {
 				left: '15px',
 			},
 
+			'>': {
+				$mol_view: {
+
+					userSelect: 'none',
+
+				},
+			},
+
+			'@': {
+
+				useless: {
+					true: {
+
+						background: {
+							color: '#e1e1e1',
+							image: `repeating-linear-gradient(
+								-45deg,
+								#c7c7c75d 0px 22px,
+								#0000 22px 55px
+							)`,
+						},
+						border: {
+							color: '#c7c7c7',
+						},
+						userSelect: 'none',
+						cursor: 'not-allowed',
+
+						'>': {
+							$mol_view: {
+
+								opacity: 0.5,
+								pointerEvents: 'none',
+
+							},
+						},
+
+					},
+				},
+
+			},
+
 		},
 
 	)

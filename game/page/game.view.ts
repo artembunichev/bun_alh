@@ -3,6 +3,35 @@ namespace $.$$ {
 	type current_dragged = { id: string; from: string; data: any }
 
 	export class $bun_alh_game_page extends $.$bun_alh_game_page {
+		
+		auto() {
+			this.on_game_open()
+		}
+		
+		@ $mol_action
+		on_game_open() {
+			
+			this.element_ids_known(
+				$mol_state_local.value(
+					'ids_known'
+				)!
+			)
+			
+			window.addEventListener( 'beforeunload' , ()=> this.on_game_close() )
+			
+		}
+		
+		on_game_close() {
+			$mol_state_local.value(
+				'ids_known' ,
+				this.element_ids_known()
+			)			
+		}
+		
+		@ $mol_action
+		open_start_page() {
+			this.app_page( 'start' )
+		}
 
 		@ $mol_mem
 		element_ids_known( next?: Array< string > ) {
@@ -111,6 +140,12 @@ namespace $.$$ {
 			]
 		}
 
+		@ $mol_mem_key
+		element_useless( element_id: string | null | undefined ) {
+			if ( !element_id ) return false
+			return this.element_ids_known().includes( element_id )
+		}
+
 		@ $mol_action
 		combine() {
 			var result_element_id =
@@ -125,6 +160,7 @@ namespace $.$$ {
 
 		@ $mol_mem
 		result_element_id( next?: string | null ): string | null {
+			this.result_useless( this.element_useless( next ) )
 			return next ?? null
 		}
 
@@ -159,8 +195,10 @@ namespace $.$$ {
 
 		@ $mol_action
 		grab_element( element_id: string ) {
-			this.know_element( element_id )
-			this.clear_combine_list()
+			if ( !this.element_useless( element_id ) ) {
+				this.know_element( element_id )
+				this.clear_combine_list()
+			}
 		}
 
 		@ $mol_action

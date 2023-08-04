@@ -1,6 +1,9 @@
 $bun_alh_game_cell $mol_view
 	element_size 64
 	size 64
+	attr *
+		^
+		title <= hint \
 	style *
 		width <= size
 		height <= size
