@@ -76,14 +76,14 @@ namespace $.$$ {
 		}
 
 		@ $mol_mem_key
-		combine_element_id( ord: number, next?: string ) {
+		combine_element_id( ord: number, next?: string | null ) {
 			if ( next !== undefined ) {
 				this.combine_list(
 					$bun_array_write(
 						this.combine_list(),
 						ord,
 						next,
-					)
+					) as $bun_alh_game_combine_list
 				)
 			}
 			return this.combine_list()[ ord ] ?? ''

@@ -6,7 +6,7 @@ $bun_alh_game_cell_combine $mol_drop
 		^
 		dblclick? <=> clear? null
 	Sub <= Drag $bun_alh_game_cell_drag
-		element_id <= element_id null
+		element_id <= element_id? null
 		element_name <= element_name \
 		element_icon <= element_icon \
 		element_size <= element_size 0
