@@ -10,7 +10,9 @@ namespace $.$$ {
 		@ $mol_mem
 		sub() {
 			return [
-				... this.element_icon() ? [ this.Element_icon(), this.Element_title() ] : [],
+				... this.element_icon()
+					? [ this.Element_icon(), this.Element_title() ]
+					: [ this.Text() ],
 			]
 		}
 

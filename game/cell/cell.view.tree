@@ -14,3 +14,5 @@ $bun_alh_game_cell $mol_view
 		title <= element_name \
 	Element_title $mol_view
 		sub / <= element_name
+	Text $mol_view
+		sub / <= text \

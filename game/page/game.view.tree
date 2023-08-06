@@ -41,6 +41,8 @@ $bun_alh_game_page $bun_alh_page
 							element_name <= result_element_name \
 							element_icon <= result_element_icon \
 							element_size <= element_size
-							useless <= result_useless? false
+							combine_list <= combine_list
+							useless <= result_element_useless false
+							new <= result_element_new false
 							event *
 								click? <=> on_result_click? null

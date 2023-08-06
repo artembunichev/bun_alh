@@ -155,8 +155,16 @@ namespace $.$$ {
 		}
 		
 		@ $mol_mem
-		result_useless() {
+		result_element_useless() {
 			return this.element_useless( this.result_element_id() )
+		}
+		
+		@ $mol_mem
+		result_element_new() {
+			return Boolean( this.result_element_id()
+				&&
+				!this.result_element_useless()
+			)
 		}
 
 		@ $mol_mem

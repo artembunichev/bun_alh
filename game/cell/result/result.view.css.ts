@@ -6,7 +6,7 @@ namespace $.$$ {
 		{
 
 			background: {
-				color: $bun_alh_theme.main,
+				color: '#f2f3f5',
 			},
 			border: {
 				width: '2px',
@@ -15,6 +15,16 @@ namespace $.$$ {
 			},
 			margin: {
 				left: '15px',
+			},
+			
+			Text: {
+			
+				color: '#818281',
+				font: {
+					size: '18px',
+					weight: 'bold',
+				},
+			
 			},
 
 			'>': {
@@ -53,6 +63,16 @@ namespace $.$$ {
 							},
 						},
 
+					},
+				},
+				
+				new: {
+					true: {
+						
+						background: {
+							color: $bun_alh_theme.main,
+						},
+						
 					},
 				},
 

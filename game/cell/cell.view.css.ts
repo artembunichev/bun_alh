@@ -28,6 +28,12 @@ namespace $.$$ {
 				},
 
 			},
+			
+			Text: {
+				
+				textAlign: 'center',
+				
+			},
 
 		},
 

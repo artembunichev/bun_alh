@@ -1,5 +1,7 @@
 $bun_alh_game_cell_result $bun_alh_game_cell
-	useless? false
+	combine_list /string
 	attr *
 		^
-		useless <= useless
+		useless <= useless false
+		new <= new false
+	text \Ничего...
