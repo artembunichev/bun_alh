@@ -1189,6 +1189,7 @@ declare namespace $ {
         element_ids_combined(): string[];
         combine_list(next?: $bun_alh_game_combine_list): $bun_alh_game_combine_list;
         combine(...elements: $bun_alh_game_ings_nullable): string | undefined;
+        victory(): boolean;
     }
 }
 
@@ -1449,6 +1450,7 @@ declare namespace $ {
         Head_container_sub(): readonly any[];
         element(id: any): $bun_alh_game_element | null;
         element_name(id: any): string;
+        victory(): boolean;
         model(): $bun_alh_game;
         current_dragged(next?: any): any;
         combine_list(next?: any): any;
@@ -1459,12 +1461,15 @@ declare namespace $ {
         Recipes_button(): $$.$mol_button;
         field_adopt(next?: any): any;
         field_receive(next?: any): any;
+        victory_message_text(): string;
+        Victory_message(): $mol_view;
         element_id(id: any): string;
         element_icon(id: any): string;
         element_size(): number;
         Element_cell(id: any): $$.$bun_alh_game_cell_known;
         elements(): readonly any[];
         Known_elements_scroll(): $$.$bun_scroll_hor;
+        known_elements_sub(): readonly any[];
         Known_elements(): $mol_view;
         cell_combine_ord(id: any): number;
         combine_element_id(id: any, next?: any): any;
@@ -1501,6 +1506,7 @@ declare namespace $.$$ {
         element_id(id: string): string;
         element_icon(id: string | null): string;
         element_size(): number;
+        known_elements_sub(): ($mol_view | $bun_scroll_hor)[];
         current_dragged(next?: current_dragged | null): current_dragged | null;
         field_adopt(transfer: DataTransfer): string;
         field_receive(element_id: string): void;

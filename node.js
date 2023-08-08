@@ -3864,6 +3864,7 @@ var $;
         'border_bold',
         'scroll_back',
         'scroll_thumb',
+        'victory',
     ]);
 })($ || ($ = {}));
 //bun/alh/theme/theme.ts
@@ -3871,7 +3872,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("bun/alh/theme/theme.css", ":root {\n\n\t--bun_alh_theme_main: #fffcbb;\n\t--bun_alh_theme_main_light: #fffcbb7d;\n\t--bun_alh_theme_main_bold: #ffd66c;\n\t--bun_alh_theme_main_bold_alpha: #ffd66c85;\n\t--bun_alh_theme_border: #fffaa0;\n\t--bun_alh_theme_border_bold: #f5c23d;\n\t--bun_alh_theme_scroll_back: #0000;\n\t--bun_alh_theme_scroll_thumb: #ff9500;\n\n}\n");
+    $mol_style_attach("bun/alh/theme/theme.css", ":root {\n\n\t--bun_alh_theme_main: #fffcbb;\n\t--bun_alh_theme_main_light: #fffcbb7d;\n\t--bun_alh_theme_main_bold: #ffd66c;\n\t--bun_alh_theme_main_bold_alpha: #ffd66c85;\n\t--bun_alh_theme_border: #fffaa0;\n\t--bun_alh_theme_border_bold: #f5c23d;\n\t--bun_alh_theme_scroll_back: #0000;\n\t--bun_alh_theme_scroll_thumb: #ff9500;\n\t--bun_alh_theme_victory: #30b320;\n\n}\n");
 })($ || ($ = {}));
 //bun/alh/theme/-css/theme.css.ts
 ;
@@ -4362,6 +4363,9 @@ var $;
         combine(...elements) {
             return $bun_alh_game_combine(...elements);
         }
+        victory() {
+            return this.element_ids_known().length === $bun_alh_game_elements.length;
+        }
     }
     __decorate([
         $mol_mem_key
@@ -4384,6 +4388,9 @@ var $;
     __decorate([
         $mol_mem_key
     ], $bun_alh_game.prototype, "combine", null);
+    __decorate([
+        $mol_mem
+    ], $bun_alh_game.prototype, "victory", null);
     $.$bun_alh_game = $bun_alh_game;
 })($ || ($ = {}));
 //bun/alh/game/game.ts
@@ -5584,6 +5591,9 @@ var $;
         element_name(id) {
             return this.model().element_name(id);
         }
+        victory() {
+            return this.model().victory();
+        }
         model() {
             const obj = new this.$.$bun_alh_game();
             return obj;
@@ -5635,6 +5645,16 @@ var $;
                 return next;
             return null;
         }
+        victory_message_text() {
+            return "Все элементы открыты! Это победа.";
+        }
+        Victory_message() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.victory_message_text()
+            ];
+            return obj;
+        }
         element_id(id) {
             return "";
         }
@@ -5664,11 +5684,15 @@ var $;
             obj.sub = () => this.elements();
             return obj;
         }
-        Known_elements() {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
+        known_elements_sub() {
+            return [
+                this.Victory_message(),
                 this.Known_elements_scroll()
             ];
+        }
+        Known_elements() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => this.known_elements_sub();
             return obj;
         }
         cell_combine_ord(id) {
@@ -5789,6 +5813,9 @@ var $;
         $mol_mem
     ], $bun_alh_game_page.prototype, "field_receive", null);
     __decorate([
+        $mol_mem
+    ], $bun_alh_game_page.prototype, "Victory_message", null);
+    __decorate([
         $mol_mem_key
     ], $bun_alh_game_page.prototype, "Element_cell", null);
     __decorate([
@@ -5856,6 +5883,12 @@ var $;
             }
             element_size() {
                 return 125;
+            }
+            known_elements_sub() {
+                return [
+                    ...this.victory() ? [this.Victory_message()] : [],
+                    this.Known_elements_scroll(),
+                ];
             }
             current_dragged(next) {
                 if (next === undefined)
@@ -5972,6 +6005,9 @@ var $;
         ], $bun_alh_game_page.prototype, "element_icon", null);
         __decorate([
             $mol_mem
+        ], $bun_alh_game_page.prototype, "known_elements_sub", null);
+        __decorate([
+            $mol_mem
         ], $bun_alh_game_page.prototype, "current_dragged", null);
         __decorate([
             $mol_action
@@ -6072,6 +6108,12 @@ var $;
                 padding: '35px',
             },
             Known_elements: {
+                flex: {
+                    direction: 'column',
+                },
+                align: {
+                    items: 'center',
+                },
                 maxWidth: '100%',
                 padding: '15px',
                 background: {
@@ -6082,6 +6124,15 @@ var $;
                     style: 'solid',
                     color: $bun_alh_theme.border,
                     radius: '15px',
+                },
+            },
+            Victory_message: {
+                position: 'relative',
+                top: '-9px',
+                color: $bun_alh_theme.victory,
+                font: {
+                    size: '18px',
+                    weight: 'bold',
                 },
             },
             Known_elements_scroll: {
