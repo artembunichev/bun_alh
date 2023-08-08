@@ -1,6 +1,6 @@
 namespace $ {
 
-	export var $bun_alh_theme = $bun_style_theme_create(
+	export var $bun_alh_theme = $mol_style_prop(
 		'bun_alh_theme',
 		[
 			'main',
