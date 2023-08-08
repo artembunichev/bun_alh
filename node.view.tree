@@ -1,0 +1,380 @@
+$mol_speck $mol_view
+	attr *
+		^
+		mol_theme <= theme \$mol_theme_accent
+	style *
+		^
+		minHeight \1em
+	sub /
+		<= value null
+
+$mol_button $mol_view
+	enabled true
+	click?event null
+	event_click?event null
+	event *
+		^
+		click?event <=> event_activate?event null
+		dblclick?event <=> clicks?event null
+		keydown?event <=> event_key_press?event null 
+	attr *
+		^
+		disabled <= disabled false
+		role \button
+		tabindex <= tab_index 0
+		title <= hint_safe <= hint \
+	sub /$mol_view_content
+		<= title
+	Speck $mol_speck
+		value <= error \
+
+$mol_svg $mol_view
+	dom_name \svg
+	dom_name_space \http://www.w3.org/2000/svg
+	font_size 16
+	font_family \
+	style_size *
+
+$mol_svg_root $mol_svg
+	dom_name \svg
+	attr *
+		^
+		viewBox <= view_box \0 0 100 100
+		preserveAspectRatio <= aspect \xMidYMid
+
+$mol_svg_path $mol_svg
+	dom_name \path
+	attr *
+		^
+		d <= geometry \
+
+
+$mol_icon $mol_svg_root
+	view_box \0 0 24 24
+	minimal_width 16
+	minimal_height 16
+	sub /
+		<= Path $mol_svg_path
+			geometry <= path \
+
+$mol_icon_arrow_left $mol_icon path \M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z
+
+$bun_alh_page $mol_view
+	with_back false
+	sub /
+		<= Head_container $mol_view
+			sub <= Head_container_sub /
+				<= Back_button $bun_alh_page_button_back
+					back? <=> back? null
+					hint <= back_hint \
+				<= Head_title $mol_view
+					dom_name \h1
+					sub / <= title
+		<= Content $mol_view
+			sub <= content /
+
+$bun_alh_page_button_back $mol_button
+	sub / <= Icon $mol_icon_arrow_left
+	click? <=> back? null
+	hint \Назад
+
+$bun_alh_board $mol_view
+	sub /
+		<= Title $mol_view
+			sub / <= title
+		<= Content $mol_view
+			sub <= content /
+
+$bun_alh_controls_page $bun_alh_page
+	app_page? \
+	title \Управление
+	with_back true
+	back? <=> open_start_page? null
+	back_hint \Назад в меню
+	content /
+		<= Page_content $mol_view sub /
+			<= Board $bun_alh_board
+				title \Управление элементами в bun_alh
+				content /
+					<= Board_content $mol_view sub /
+						<= Ways_title $mol_view
+							sub /
+								\В bun_alh существует два способа управления элементами:
+						<= Way_list $mol_view
+							dom_name \ul
+							sub <= way_list /
+								<= Way*0 $mol_view
+									dom_name \li
+									sub /
+										<= Way_title* $mol_view
+											sub / <= way_title* \
+										<= Way_description* $mol_view
+											sub / <= way_description* \
+
+$mol_image $mol_view
+	dom_name \img
+	field *
+		^
+		src <= uri \
+		alt <= title
+		loading <= loading \eager
+		decoding <= decoding \async
+		crossOrigin <= cors null
+	attr *
+		^
+		width <= natural_width? 0
+		height <= natural_height? 0
+	event *
+		load? <=> load? null
+	minimal_width 16
+	minimal_height 16
+
+$bun_alh_game_cell $mol_view
+	element_size 64
+	size 64
+	attr *
+		^
+		title <= hint \
+	style *
+		width <= size
+		height <= size
+	Element_icon $mol_image
+		uri <= element_icon \
+		natural_width <= element_size
+		natural_height <= element_size
+		title <= element_name \
+	Element_title $mol_view
+		sub / <= element_name
+	Text $mol_view
+		sub / <= text \
+
+$mol_ghost $mol_view
+	Sub $mol_view
+
+$mol_drag $mol_ghost
+	event *
+		dragstart?event <=> drag_start?event <=> start?event null
+		drag?event <=> drag_move?event <=> move?event null
+		dragend?event <=> drag_end?event <=> end?event null
+	attr *
+		draggable true
+		mol_drag_status <= status? \ready
+	transfer *
+		text/plain \
+		text/html \
+		text/uri-list \
+	allow_copy true
+	allow_link true
+	allow_move true
+	image <= dom_node
+
+$bun_alh_game_cell_drag $mol_drag
+	from_id \
+	from_data null
+	current_dragged? null
+	transfer *
+		text/plain <= element_id \
+		text/html <= element_name \
+		text/uri-list \
+	Sub <= Cell $bun_alh_game_cell
+		hint <= hint <= element_name \
+		element_icon <= element_icon \
+		element_name <= element_name
+		element_size <= element_size 0
+
+$bun_alh_game_cell_known $bun_alh_game_cell_drag
+	combine_list? null
+	event *
+		^
+		dblclick? <=> add_element_to_empty_combine_cell? null
+	from_id \known
+
+$bun_scroll_hor $mol_view
+	event *
+		^
+		wheel? <=> on_wheel? null
+
+$mol_drop $mol_ghost
+	enabled? true
+	event *
+		dragenter?event <=> enter?event null
+		dragover?event <=> move?event null
+		dragleave?event <=> leave?event null
+		drop?event <=> drop?event null
+	attr * mol_drop_status <= status? \ready
+	adopt?transfer *
+	receive?transfer null
+	allow /
+		\link
+		\copy
+		\move
+
+$bun_alh_game_cell_combine $mol_drop
+	ord 0
+	combine_list? /
+	adopt? <=> transfer_adopt? null
+	event *
+		^
+		dblclick? <=> clear? null
+	Sub <= Drag $bun_alh_game_cell_drag
+		hint <= element_name \
+		element_id <= element_id? null
+		element_name <= element_name
+		element_icon <= element_icon \
+		element_size <= element_size 0
+		current_dragged? <=> current_dragged? null
+		from_id \combine
+		from_data <= drag_from_data null
+
+$bun_alh_game_cell_result $bun_alh_game_cell
+	combine_list /string
+	attr *
+		^
+		useless <= useless false
+		new <= new false
+	text \Ничего...
+
+$bun_alh_game_page $bun_alh_page
+	app_page? \
+	title \bun_alh
+	with_back true
+	back? <=> open_start_page? null
+	back_hint \Назад в меню
+	Head_container_sub /
+		<= Back_button
+		<= Head_title
+		<= Recipes_button $mol_button
+			title \Рецепты
+			hint \Открытые рецепты
+			click? <=> open_recipes? null
+	model $bun_alh_game
+		element* => element*
+		element_name* => element_name*
+	current_dragged? null
+	combine_list? null
+	drag_from? null
+	content /
+		<= Field_drop $mol_drop
+			adopt? <=> field_adopt? null
+			receive? <=> field_receive? null
+			Sub <= Field $mol_view sub /
+				<= Known_elements $mol_view
+					sub /
+						<= Known_elements_scroll $bun_scroll_hor
+							sub <= elements /
+								<= Element_cell*0 $bun_alh_game_cell_known
+									current_dragged? <=> current_dragged?
+									combine_list? <=> combine_list?
+									element_id <= element_id* \
+									element_icon <= element_icon* \
+									element_name <= element_name*
+									element_size <= element_size 0
+				<= Combine $mol_view
+					sub <= combine_sub /
+						<= cells_combine /
+							<= Cell_combine*0 $bun_alh_game_cell_combine
+								ord <= cell_combine_ord* 0
+								combine_list? <=> combine_list?
+								current_dragged? <=> current_dragged?
+								element_id? <=> combine_element_id*? null
+								element_icon <= combine_element_icon* \
+								element_name <= combine_element_name* \
+								element_size <= element_size
+						<= Cell_result $bun_alh_game_cell_result
+							element_name <= result_element_name \
+							element_icon <= result_element_icon \
+							element_size <= element_size
+							combine_list <= combine_list
+							useless <= result_element_useless false
+							new <= result_element_new false
+							event *
+								click? <=> on_result_click? null
+
+$mol_list $mol_view
+	render_visible_only true
+	render_over 0
+	sub <= rows /$mol_view
+	Empty $mol_view
+	Gap_before $mol_view style * paddingTop <= gap_before 0
+	Gap_after $mol_view style * paddingTop <= gap_after 0
+	view_window /
+		0
+		0
+
+$mol_icon_plus $mol_icon path \M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z
+
+$mol_icon_arrow_right $mol_icon path \M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z
+
+$mol_icon_arrow_right_bold $mol_icon path \M4,15V9H12V4.16L19.84,12L12,19.84V15H4Z
+
+$mol_icon_arrow_right_bold_outline $mol_icon path \M11,16H3V8H11V2L21,12L11,22V16M13,7V10H5V14H13V17L18,12L13,7Z
+
+$bun_alh_game_recipes_page $bun_alh_page
+	title \Рецепты
+	with_back true
+	back_hint \Назад к игре
+	back? <=> open_game? null
+	app_page? \
+	elements /string
+	element_icon* \
+	element_name* \
+	element_size 80
+	No_recipes $mol_view
+		sub / \У Вас пока нет открытых рецептов...
+	Recipe_list $mol_list
+		rows <= recipe_rows /
+			<= Recipe*0 $mol_view
+				sub /
+					<= Ings* $mol_view
+						sub <= ing_rows* /
+							<= Ing* $bun_alh_game_cell
+								element_size <= element_size
+								element_icon <= ing_icon* \
+								element_name <= ing_name* \
+							<= Ings_plus_icon* $mol_view
+								sub / <= Plus_icon* $mol_icon_plus
+					<= Recipe_result_icon* $mol_view
+						sub / <= Result_icon* $mol_icon_arrow_right_bold_outline
+					<= Result* $bun_alh_game_cell_result
+						element_size <= element_size
+						element_icon <= element_icon* \
+						element_name <= element_name* \
+						new true
+	content /
+		<= Board $bun_alh_board
+			title <= board_title \Открытые рецепты
+			content <= board_content /$mol_view
+
+$bun_alh_app_menu_button $mol_button
+
+$bun_alh_app $mol_view
+	title \bun_alh
+	attr *
+		^
+		mol_theme \$mol_theme_light
+	Start_page $bun_alh_page
+		title \bun_alh
+		content /
+			<= Start_menu $mol_view
+				sub /
+					<= Start_button $bun_alh_app_menu_button
+						title \Играть
+						click? <=> play? null
+					<= Controls_button $bun_alh_app_menu_button
+						title \Управление
+						click? <=> open_controls_page? null
+	Controls_page $bun_alh_controls_page
+		app_page? <=> page?
+	game $bun_alh_game
+		element_icon* => element_icon*
+		element_name* => element_name*
+		element_ids_known => element_ids_known
+		element_ids_combined => element_ids_combined
+	Game_page $bun_alh_game_page
+		model <= game
+		app_page? <=> page? \
+	Recipes_page $bun_alh_game_recipes_page
+		app_page? <=> page?
+		elements <= element_ids_combined_reversed /
+		element_icon* <= element_icon*
+		element_name* <= element_name*
