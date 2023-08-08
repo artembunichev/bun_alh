@@ -4,6 +4,13 @@ $bun_alh_game_page $bun_alh_page
 	with_back true
 	back? <=> open_start_page? null
 	back_hint \Назад в меню
+	Head_container_sub /
+		<= Back_button
+		<= Head_title
+		<= Recipes_button $mol_button
+			title \Рецепты
+			hint \Открытые рецепты
+			click? <=> open_recipes? null
 	model $bun_alh_game
 		element* => element*
 		element_name* => element_name*

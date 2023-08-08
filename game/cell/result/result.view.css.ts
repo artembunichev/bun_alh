@@ -13,9 +13,6 @@ namespace $.$$ {
 				style: 'solid',
 				color: $bun_alh_theme.border,
 			},
-			margin: {
-				left: '15px',
-			},
 			
 			Text: {
 			

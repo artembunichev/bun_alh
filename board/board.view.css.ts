@@ -6,6 +6,11 @@ namespace $.$$ {
 		{
 			
 			maxWidth: '100%',
+			maxHeight: '100%',
+			flex: {
+				grow: 0,
+				basis: 'auto',
+			},
 			flexDirection: 'column',
 			padding: '15px',
 			background: {
@@ -33,10 +38,16 @@ namespace $.$$ {
 			
 			Content: {
 				
+				maxHeight: '100%',
+				flex: {
+					grow: 1,
+					shrink: 0,
+					basis: 0,
+				},
 				padding: '15px',
 				borderRadius: '15px',
 				background: {
-					color: $bun_alh_theme.main,
+					color: $bun_alh_theme.main_light,
 				},
 				
 			},

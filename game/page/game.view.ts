@@ -17,20 +17,16 @@ namespace $.$$ {
 				)!
 			)
 			
-			window.addEventListener( 'beforeunload' , ()=> this.on_game_close() )
-			
-		}
-		
-		on_game_close() {
-			$mol_state_local.value(
-				'ids_known' ,
-				this.element_ids_known()
-			)			
 		}
 		
 		@ $mol_action
 		open_start_page() {
 			this.app_page( 'start' )
+		}
+		
+		@ $mol_action
+		open_recipes() {
+			this.app_page( 'recipes' )
 		}
 
 		@ $mol_mem

@@ -1,0 +1,35 @@
+$bun_alh_game_recipes_page $bun_alh_page
+	title \Рецепты
+	with_back true
+	back_hint \Назад к игре
+	back? <=> open_game? null
+	app_page? \
+	elements /string
+	element_icon* \
+	element_name* \
+	element_size 80
+	No_recipes $mol_view
+		sub / \У Вас пока нет открытых рецептов...
+	Recipe_list $mol_list
+		rows <= recipe_rows /
+			<= Recipe*0 $mol_view
+				sub /
+					<= Ings* $mol_view
+						sub <= ing_rows* /
+							<= Ing* $bun_alh_game_cell
+								element_size <= element_size
+								element_icon <= ing_icon* \
+								element_name <= ing_name* \
+							<= Ings_plus_icon* $mol_view
+								sub / <= Plus_icon* $mol_icon_plus
+					<= Recipe_result_icon* $mol_view
+						sub / <= Result_icon* $mol_icon_arrow_right_bold_outline
+					<= Result* $bun_alh_game_cell_result
+						element_size <= element_size
+						element_icon <= element_icon* \
+						element_name <= element_name* \
+						new true
+	content /
+		<= Board $bun_alh_board
+			title \Открытые рецепты
+			content <= board_content /$mol_view

@@ -5,19 +5,19 @@ namespace $.$$ {
 		$bun_alh_page ,
 		{
 			
-			padding: {
-				top: 0 ,
-				right: '25px',
-				bottom: '25px',
-				left: '25px',
-			},
-			
 			flex: {
 				grow: 1,
 				shrink: 0,
 				basis: 0,
 				
 				direction: 'column',
+			},
+			
+			padding: {
+				top: '6px',
+				right: '25px',
+				bottom: '25px',
+				left: '25px',
 			},
 			
 			align: {

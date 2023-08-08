@@ -16,7 +16,16 @@ $bun_alh_app $mol_view
 						click? <=> open_controls_page? null
 	Controls_page $bun_alh_controls_page
 		app_page? <=> page?
-	game? $bun_alh_game
+	game $bun_alh_game
+		element_icon* => element_icon*
+		element_name* => element_name*
+		element_ids_known => element_ids_known
+		element_ids_combined => element_ids_combined
 	Game_page $bun_alh_game_page
 		model <= game
 		app_page? <=> page? \
+	Recipes_page $bun_alh_game_recipes_page
+		app_page? <=> page?
+		elements <= element_ids_combined_reversed /
+		element_icon* <= element_icon*
+		element_name* <= element_name*

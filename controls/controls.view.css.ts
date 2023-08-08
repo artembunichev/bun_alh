@@ -18,6 +18,9 @@ namespace $.$$ {
 				
 				maxWidth: '600px',
 				flex: {
+					grow: 0,
+					basis: 'auto',
+					
 					direction: 'column',
 				},
 				

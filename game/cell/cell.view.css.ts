@@ -26,6 +26,7 @@ namespace $.$$ {
 				margin: {
 					top: '5px',
 				},
+				textAlign: 'center',
 
 			},
 			

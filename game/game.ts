@@ -22,6 +22,15 @@ namespace $ {
 		element_name( id: string ) {
 			return this.element( id )?.name ?? ''
 		}
+		
+		element_ids_base() {
+			return [
+				'water',
+				'fire',
+				'air',
+				'earth',
+			]
+		}
 
 		@ $mol_mem
 		element_ids_known( next?: Array< string > ) {			
@@ -29,7 +38,13 @@ namespace $ {
 				$mol_state_local.value( 'ids_known' , next )	
 			}
 			
-			return next ?? [ 'water', 'fire', 'air', 'earth' ]
+			return next ?? this.element_ids_base()
+		}
+		
+		@ $mol_mem
+		element_ids_combined() {
+			return this.element_ids_known()
+				.filter( id => !this.element_ids_base().includes( id ) )
 		}
 
 		@ $mol_mem
