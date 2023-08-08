@@ -31,5 +31,5 @@ $bun_alh_game_recipes_page $bun_alh_page
 						new true
 	content /
 		<= Board $bun_alh_board
-			title \Открытые рецепты
+			title <= board_title \Открытые рецепты
 			content <= board_content /$mol_view

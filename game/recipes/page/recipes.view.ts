@@ -8,6 +8,21 @@ namespace $.$$ {
 		}
 		
 		@ $mol_mem
+		recipe_count_total() {
+			return Object.keys( $bun_alh_game_recipes ).length
+		}
+		
+		@ $mol_mem
+		recipe_count_known() {
+			return this.elements().length
+		}
+		
+		@ $mol_mem
+		board_title() {
+			return `Открытые рецепты (${ this.recipe_count_known() }/${ this.recipe_count_total() })`
+		}
+		
+		@ $mol_mem
 		board_content() {
 			return this.elements().length
 				? [ this.Recipe_list() ]
