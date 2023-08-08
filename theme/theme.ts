@@ -11,6 +11,7 @@ namespace $ {
 			'border_bold',
 			'scroll_back',
 			'scroll_thumb',
+			'victory',
 		]
 	)
 

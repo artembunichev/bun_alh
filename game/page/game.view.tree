@@ -14,6 +14,7 @@ $bun_alh_game_page $bun_alh_page
 	model $bun_alh_game
 		element* => element*
 		element_name* => element_name*
+		victory => victory
 	current_dragged? null
 	combine_list? null
 	drag_from? null
@@ -23,7 +24,9 @@ $bun_alh_game_page $bun_alh_page
 			receive? <=> field_receive? null
 			Sub <= Field $mol_view sub /
 				<= Known_elements $mol_view
-					sub /
+					sub <= known_elements_sub /
+						<= Victory_message $mol_view
+							sub / <= victory_message_text \Все элементы открыты! Это победа.
 						<= Known_elements_scroll $bun_scroll_hor
 							sub <= elements /
 								<= Element_cell*0 $bun_alh_game_cell_known

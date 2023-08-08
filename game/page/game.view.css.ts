@@ -45,7 +45,13 @@ namespace $.$$ {
 			},
 
 			Known_elements: {
-
+				
+				flex: {
+					direction: 'column',
+				},
+				align: {
+					items: 'center',
+				},
 				maxWidth: '100%',
 				padding: '15px',
 				background: {
@@ -58,6 +64,19 @@ namespace $.$$ {
 					radius: '15px',
 				},
 
+			},
+			
+			Victory_message: {
+				
+				position: 'relative',
+				top: '-9px',
+				
+				color: $bun_alh_theme.victory,
+				font: {
+					size: '18px',
+					weight: 'bold',
+				},
+				
 			},
 
 			Known_elements_scroll: {

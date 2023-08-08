@@ -53,6 +53,14 @@ namespace $.$$ {
 		element_size() {
 			return 125
 		}
+		
+		@ $mol_mem
+		known_elements_sub() {
+			return [
+				... this.victory() ? [ this.Victory_message() ] : [],
+				this.Known_elements_scroll(),
+			]
+		}
 
 		@ $mol_mem
 		current_dragged( next?: current_dragged | null ) {
