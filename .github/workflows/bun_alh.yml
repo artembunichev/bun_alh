@@ -1,11 +1,6 @@
 name: $bun_alh_app
 
-on:
-  workflow_dispatch:
-  push:
-  pull_request:
-  schedule:
-  - cron: "0 7 * * *"
+on: [workflow_dispatch, push, pull_request]
 
 jobs:
   build:
