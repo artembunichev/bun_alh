@@ -11,9 +11,14 @@ namespace $.$$ {
 				basis: 0,
 			},
 			
+			Head_container: {
+				
+				zIndex: 2,
+				
+			},
+			
 			Recipes_button: {
-				
-				
+								
 				position: 'absolute',
 				top: '14.5px',
 				left: '127px',
@@ -28,8 +33,19 @@ namespace $.$$ {
 				
 			},
 			
+			Drop_zone: {
+			
+				position: 'absolute',
+				top: '0px',
+				left: '0px',
+				zIndex: 1,
+				width: '100%',
+				height: '100%',
+				
+			},
+			
 			Field: {
-
+				
 				flex: {
 					grow: 1,
 					shrink: 0,
@@ -46,6 +62,7 @@ namespace $.$$ {
 
 			Known_elements: {
 				
+				zIndex: 2,
 				flex: {
 					direction: 'column',
 				},
@@ -90,7 +107,8 @@ namespace $.$$ {
 			},
 
 			Combine: {
-
+				
+				zIndex: 2,
 				flex: {
 					grow: 1,
 					shrink: 0,
