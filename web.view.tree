@@ -111,6 +111,24 @@ $bun_alh_controls_page $bun_alh_page
 										<= Way_description* $mol_view
 											sub / <= way_description* \
 
+$mol_ghost $mol_view
+	Sub $mol_view
+
+$mol_drop $mol_ghost
+	enabled? true
+	event *
+		dragenter?event <=> enter?event null
+		dragover?event <=> move?event null
+		dragleave?event <=> leave?event null
+		drop?event <=> drop?event null
+	attr * mol_drop_status <= status? \ready
+	adopt?transfer *
+	receive?transfer null
+	allow /
+		\link
+		\copy
+		\move
+
 $mol_image $mol_view
 	dom_name \img
 	field *
@@ -147,9 +165,6 @@ $bun_alh_game_cell $mol_view
 		sub / <= element_name
 	Text $mol_view
 		sub / <= text \
-
-$mol_ghost $mol_view
-	Sub $mol_view
 
 $mol_drag $mol_ghost
 	event *
@@ -193,21 +208,6 @@ $bun_scroll_hor $mol_view
 	event *
 		^
 		wheel? <=> on_wheel? null
-
-$mol_drop $mol_ghost
-	enabled? true
-	event *
-		dragenter?event <=> enter?event null
-		dragover?event <=> move?event null
-		dragleave?event <=> leave?event null
-		drop?event <=> drop?event null
-	attr * mol_drop_status <= status? \ready
-	adopt?transfer *
-	receive?transfer null
-	allow /
-		\link
-		\copy
-		\move
 
 $bun_alh_game_cell_combine $mol_drop
 	ord 0
@@ -255,43 +255,44 @@ $bun_alh_game_page $bun_alh_page
 	combine_list? null
 	drag_from? null
 	content /
-		<= Field_drop $mol_drop
+		<= Drop_zone $mol_drop
 			adopt? <=> field_adopt? null
 			receive? <=> field_receive? null
-			Sub <= Field $mol_view sub /
-				<= Known_elements $mol_view
-					sub <= known_elements_sub /
-						<= Victory_message $mol_view
-							sub / <= victory_message_text \Все элементы открыты! Это победа.
-						<= Known_elements_scroll $bun_scroll_hor
-							sub <= elements /
-								<= Element_cell*0 $bun_alh_game_cell_known
-									current_dragged? <=> current_dragged?
-									combine_list? <=> combine_list?
-									element_id <= element_id* \
-									element_icon <= element_icon* \
-									element_name <= element_name*
-									element_size <= element_size 0
-				<= Combine $mol_view
-					sub <= combine_sub /
-						<= cells_combine /
-							<= Cell_combine*0 $bun_alh_game_cell_combine
-								ord <= cell_combine_ord* 0
-								combine_list? <=> combine_list?
+			Sub <= Zone $mol_view
+		<= Field $mol_view sub /
+			<= Known_elements $mol_view
+				sub <= known_elements_sub /
+					<= Victory_message $mol_view
+						sub / <= victory_message_text \Все элементы открыты! Это победа.
+					<= Known_elements_scroll $bun_scroll_hor
+						sub <= elements /
+							<= Element_cell*0 $bun_alh_game_cell_known
 								current_dragged? <=> current_dragged?
-								element_id? <=> combine_element_id*? null
-								element_icon <= combine_element_icon* \
-								element_name <= combine_element_name* \
-								element_size <= element_size
-						<= Cell_result $bun_alh_game_cell_result
-							element_name <= result_element_name \
-							element_icon <= result_element_icon \
+								combine_list? <=> combine_list?
+								element_id <= element_id* \
+								element_icon <= element_icon* \
+								element_name <= element_name*
+								element_size <= element_size 0
+			<= Combine $mol_view
+				sub <= combine_sub /
+					<= cells_combine /
+						<= Cell_combine*0 $bun_alh_game_cell_combine
+							ord <= cell_combine_ord* 0
+							combine_list? <=> combine_list?
+							current_dragged? <=> current_dragged?
+							element_id? <=> combine_element_id*? null
+							element_icon <= combine_element_icon* \
+							element_name <= combine_element_name* \
 							element_size <= element_size
-							combine_list <= combine_list
-							useless <= result_element_useless false
-							new <= result_element_new false
-							event *
-								click? <=> on_result_click? null
+					<= Cell_result $bun_alh_game_cell_result
+						element_name <= result_element_name \
+						element_icon <= result_element_icon \
+						element_size <= element_size
+						combine_list <= combine_list
+						useless <= result_element_useless false
+						new <= result_element_new false
+						event *
+							click? <=> on_result_click? null
 
 $mol_list $mol_view
 	render_visible_only true

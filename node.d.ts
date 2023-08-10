@@ -1323,6 +1323,52 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_ghost extends $mol_view {
+        Sub(): $mol_view;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_ghost extends $.$mol_ghost {
+        dom_node(next?: Element): Element;
+        dom_node_actual(): Element;
+        dom_tree(): Element;
+        title(): string;
+        minimal_width(): number;
+        minimal_height(): number;
+    }
+}
+
+declare namespace $ {
+    class $mol_drop extends $mol_ghost {
+        enabled(next?: any): boolean;
+        event(): Record<string, any>;
+        attr(): Record<string, any>;
+        adopt(transfer?: any): Record<string, any>;
+        receive(transfer?: any): any;
+        allow(): readonly any[];
+        enter(event?: any): any;
+        move(event?: any): any;
+        leave(event?: any): any;
+        drop(event?: any): any;
+        status(next?: any): string;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_drop extends $.$mol_drop {
+        status(next?: "ready" | "drag"): "ready" | "drag";
+        protected _target: EventTarget | null;
+        enter(event: DragEvent): void;
+        move(event: DragEvent): void;
+        decide_action(event: DragEvent): any;
+        leave(event: DragEvent): void;
+        receive(transfer: unknown): unknown;
+        drop(event: DragEvent): void;
+    }
+}
+
+declare namespace $ {
     class $mol_image extends $mol_view {
         dom_name(): string;
         field(): Record<string, any>;
@@ -1378,23 +1424,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_ghost extends $mol_view {
-        Sub(): $mol_view;
-    }
-}
-
-declare namespace $.$$ {
-    class $mol_ghost extends $.$mol_ghost {
-        dom_node(next?: Element): Element;
-        dom_node_actual(): Element;
-        dom_tree(): Element;
-        title(): string;
-        minimal_width(): number;
-        minimal_height(): number;
-    }
-}
-
-declare namespace $ {
     class $mol_drag extends $mol_ghost {
         event(): Record<string, any>;
         attr(): Record<string, any>;
@@ -1415,7 +1444,7 @@ declare namespace $ {
 
 declare namespace $.$$ {
     class $mol_drag extends $.$mol_drag {
-        status(next?: "drag" | "ready"): "drag" | "ready";
+        status(next?: "ready" | "drag"): "ready" | "drag";
         drag_start(event: DragEvent): void;
         drag_end(event: DragEvent): void;
     }
@@ -1476,35 +1505,6 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bun_scroll_hor extends $.$bun_scroll_hor {
         on_wheel(e: WheelEvent): void;
-    }
-}
-
-declare namespace $ {
-    class $mol_drop extends $mol_ghost {
-        enabled(next?: any): boolean;
-        event(): Record<string, any>;
-        attr(): Record<string, any>;
-        adopt(transfer?: any): Record<string, any>;
-        receive(transfer?: any): any;
-        allow(): readonly any[];
-        enter(event?: any): any;
-        move(event?: any): any;
-        leave(event?: any): any;
-        drop(event?: any): any;
-        status(next?: any): string;
-    }
-}
-
-declare namespace $.$$ {
-    class $mol_drop extends $.$mol_drop {
-        status(next?: "drag" | "ready"): "drag" | "ready";
-        protected _target: EventTarget | null;
-        enter(event: DragEvent): void;
-        move(event: DragEvent): void;
-        decide_action(event: DragEvent): any;
-        leave(event: DragEvent): void;
-        receive(transfer: unknown): unknown;
-        drop(event: DragEvent): void;
     }
 }
 
@@ -1590,6 +1590,8 @@ declare namespace $ {
         Recipes_button(): $$.$mol_button;
         field_adopt(next?: any): any;
         field_receive(next?: any): any;
+        Zone(): $mol_view;
+        Drop_zone(): $$.$mol_drop;
         victory_message_text(): string;
         Victory_message(): $mol_view;
         element_id(id: any): string;
@@ -1615,7 +1617,6 @@ declare namespace $ {
         combine_sub(): readonly any[];
         Combine(): $mol_view;
         Field(): $mol_view;
-        Field_drop(): $$.$mol_drop;
     }
 }
 

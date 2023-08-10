@@ -4075,7 +4075,7 @@ var $;
                 return [
                     {
                         title: 'Перетаскивание',
-                        description: 'Перетащите известный элемент в ячейку для комбинирования. Перетащите элемент в любое место вне ячейки комбинирования, чтобы исключить его из комбинации.'
+                        description: 'Перетащите известный элемент в ячейку для комбинирования. Перетащите элемент в любое свободное место вне ячейки комбинирования, чтобы исключить его из комбинации.'
                     },
                     {
                         title: 'Двойной клик',
@@ -4390,6 +4390,237 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_ghost extends $mol_view {
+        Sub() {
+            const obj = new this.$.$mol_view();
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_ghost.prototype, "Sub", null);
+    $.$mol_ghost = $mol_ghost;
+})($ || ($ = {}));
+//mol/ghost/-view.tree/ghost.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_ghost extends $.$mol_ghost {
+            dom_node(next) {
+                const node = this.Sub().dom_node(next);
+                $mol_dom_render_attributes(node, this.attr_static());
+                $mol_dom_render_events(node, this.event());
+                return node;
+            }
+            dom_node_actual() {
+                this.dom_node();
+                const node = this.Sub().dom_node_actual();
+                const attr = this.attr();
+                const style = this.style();
+                const fields = this.field();
+                $mol_dom_render_attributes(node, attr);
+                $mol_dom_render_styles(node, style);
+                $mol_dom_render_fields(node, fields);
+                return node;
+            }
+            dom_tree() {
+                const Sub = this.Sub();
+                const node = Sub.dom_tree();
+                try {
+                    this.dom_node_actual();
+                    this.auto();
+                }
+                catch (error) {
+                    $mol_fail_log(error);
+                }
+                return node;
+            }
+            title() {
+                return this.Sub().title();
+            }
+            minimal_width() {
+                return this.Sub().minimal_width();
+            }
+            minimal_height() {
+                return this.Sub().minimal_height();
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_ghost.prototype, "dom_node", null);
+        __decorate([
+            $mol_mem
+        ], $mol_ghost.prototype, "dom_node_actual", null);
+        $$.$mol_ghost = $mol_ghost;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//mol/ghost/ghost.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_drop extends $mol_ghost {
+        enabled(next) {
+            if (next !== undefined)
+                return next;
+            return true;
+        }
+        event() {
+            return {
+                dragenter: (event) => this.enter(event),
+                dragover: (event) => this.move(event),
+                dragleave: (event) => this.leave(event),
+                drop: (event) => this.drop(event)
+            };
+        }
+        attr() {
+            return {
+                mol_drop_status: this.status()
+            };
+        }
+        adopt(transfer) {
+            if (transfer !== undefined)
+                return transfer;
+            return {};
+        }
+        receive(transfer) {
+            if (transfer !== undefined)
+                return transfer;
+            return null;
+        }
+        allow() {
+            return [
+                "link",
+                "copy",
+                "move"
+            ];
+        }
+        enter(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        move(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        leave(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        drop(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        status(next) {
+            if (next !== undefined)
+                return next;
+            return "ready";
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_drop.prototype, "enabled", null);
+    __decorate([
+        $mol_mem
+    ], $mol_drop.prototype, "adopt", null);
+    __decorate([
+        $mol_mem
+    ], $mol_drop.prototype, "receive", null);
+    __decorate([
+        $mol_mem
+    ], $mol_drop.prototype, "enter", null);
+    __decorate([
+        $mol_mem
+    ], $mol_drop.prototype, "move", null);
+    __decorate([
+        $mol_mem
+    ], $mol_drop.prototype, "leave", null);
+    __decorate([
+        $mol_mem
+    ], $mol_drop.prototype, "drop", null);
+    __decorate([
+        $mol_mem
+    ], $mol_drop.prototype, "status", null);
+    $.$mol_drop = $mol_drop;
+})($ || ($ = {}));
+//mol/drop/-view.tree/drop.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_drop extends $.$mol_drop {
+            status(next = 'ready') { return next; }
+            _target = null;
+            enter(event) {
+                if (event.defaultPrevented)
+                    return;
+                if (!this.enabled())
+                    return;
+                const action = this.decide_action(event);
+                event.dataTransfer.dropEffect = action;
+                if (action !== 'none')
+                    this.status('drag');
+                this._target = event.target;
+                event.preventDefault();
+            }
+            move(event) {
+                if (event.defaultPrevented)
+                    return;
+                if (!this.enabled())
+                    return;
+                event.dataTransfer.dropEffect = this.decide_action(event);
+                event.preventDefault();
+            }
+            decide_action(event) {
+                const allow = this.allow();
+                if (allow.includes('move') && event.shiftKey)
+                    return 'move';
+                else if (allow.includes('copy') && event.ctrlKey)
+                    return 'copy';
+                else if (allow.includes('link') && event.altKey)
+                    return 'link';
+                else
+                    return allow[0];
+            }
+            leave(event) {
+                if (this._target === event.target) {
+                    this.status('ready');
+                }
+            }
+            receive(transfer) {
+                return transfer;
+            }
+            drop(event) {
+                if (event.defaultPrevented)
+                    return;
+                event.preventDefault();
+                setTimeout(() => this.status('ready'));
+                const obj = this.adopt(event.dataTransfer);
+                if (!obj)
+                    return;
+                this.receive(obj);
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_drop.prototype, "status", null);
+        $$.$mol_drop = $mol_drop;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//mol/drop/drop.view.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_image extends $mol_view {
         dom_name() {
             return "img";
@@ -4638,78 +4869,6 @@ var $;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //bun/alh/game/cell/cell.view.css.ts
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_ghost extends $mol_view {
-        Sub() {
-            const obj = new this.$.$mol_view();
-            return obj;
-        }
-    }
-    __decorate([
-        $mol_mem
-    ], $mol_ghost.prototype, "Sub", null);
-    $.$mol_ghost = $mol_ghost;
-})($ || ($ = {}));
-//mol/ghost/-view.tree/ghost.view.tree.ts
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $mol_ghost extends $.$mol_ghost {
-            dom_node(next) {
-                const node = this.Sub().dom_node(next);
-                $mol_dom_render_attributes(node, this.attr_static());
-                $mol_dom_render_events(node, this.event());
-                return node;
-            }
-            dom_node_actual() {
-                this.dom_node();
-                const node = this.Sub().dom_node_actual();
-                const attr = this.attr();
-                const style = this.style();
-                const fields = this.field();
-                $mol_dom_render_attributes(node, attr);
-                $mol_dom_render_styles(node, style);
-                $mol_dom_render_fields(node, fields);
-                return node;
-            }
-            dom_tree() {
-                const Sub = this.Sub();
-                const node = Sub.dom_tree();
-                try {
-                    this.dom_node_actual();
-                    this.auto();
-                }
-                catch (error) {
-                    $mol_fail_log(error);
-                }
-                return node;
-            }
-            title() {
-                return this.Sub().title();
-            }
-            minimal_width() {
-                return this.Sub().minimal_width();
-            }
-            minimal_height() {
-                return this.Sub().minimal_height();
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $mol_ghost.prototype, "dom_node", null);
-        __decorate([
-            $mol_mem
-        ], $mol_ghost.prototype, "dom_node_actual", null);
-        $$.$mol_ghost = $mol_ghost;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-//mol/ghost/ghost.view.ts
 ;
 "use strict";
 var $;
@@ -5088,165 +5247,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_drop extends $mol_ghost {
-        enabled(next) {
-            if (next !== undefined)
-                return next;
-            return true;
-        }
-        event() {
-            return {
-                dragenter: (event) => this.enter(event),
-                dragover: (event) => this.move(event),
-                dragleave: (event) => this.leave(event),
-                drop: (event) => this.drop(event)
-            };
-        }
-        attr() {
-            return {
-                mol_drop_status: this.status()
-            };
-        }
-        adopt(transfer) {
-            if (transfer !== undefined)
-                return transfer;
-            return {};
-        }
-        receive(transfer) {
-            if (transfer !== undefined)
-                return transfer;
-            return null;
-        }
-        allow() {
-            return [
-                "link",
-                "copy",
-                "move"
-            ];
-        }
-        enter(event) {
-            if (event !== undefined)
-                return event;
-            return null;
-        }
-        move(event) {
-            if (event !== undefined)
-                return event;
-            return null;
-        }
-        leave(event) {
-            if (event !== undefined)
-                return event;
-            return null;
-        }
-        drop(event) {
-            if (event !== undefined)
-                return event;
-            return null;
-        }
-        status(next) {
-            if (next !== undefined)
-                return next;
-            return "ready";
-        }
-    }
-    __decorate([
-        $mol_mem
-    ], $mol_drop.prototype, "enabled", null);
-    __decorate([
-        $mol_mem
-    ], $mol_drop.prototype, "adopt", null);
-    __decorate([
-        $mol_mem
-    ], $mol_drop.prototype, "receive", null);
-    __decorate([
-        $mol_mem
-    ], $mol_drop.prototype, "enter", null);
-    __decorate([
-        $mol_mem
-    ], $mol_drop.prototype, "move", null);
-    __decorate([
-        $mol_mem
-    ], $mol_drop.prototype, "leave", null);
-    __decorate([
-        $mol_mem
-    ], $mol_drop.prototype, "drop", null);
-    __decorate([
-        $mol_mem
-    ], $mol_drop.prototype, "status", null);
-    $.$mol_drop = $mol_drop;
-})($ || ($ = {}));
-//mol/drop/-view.tree/drop.view.tree.ts
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $mol_drop extends $.$mol_drop {
-            status(next = 'ready') { return next; }
-            _target = null;
-            enter(event) {
-                if (event.defaultPrevented)
-                    return;
-                if (!this.enabled())
-                    return;
-                const action = this.decide_action(event);
-                event.dataTransfer.dropEffect = action;
-                if (action !== 'none')
-                    this.status('drag');
-                this._target = event.target;
-                event.preventDefault();
-            }
-            move(event) {
-                if (event.defaultPrevented)
-                    return;
-                if (!this.enabled())
-                    return;
-                event.dataTransfer.dropEffect = this.decide_action(event);
-                event.preventDefault();
-            }
-            decide_action(event) {
-                const allow = this.allow();
-                if (allow.includes('move') && event.shiftKey)
-                    return 'move';
-                else if (allow.includes('copy') && event.ctrlKey)
-                    return 'copy';
-                else if (allow.includes('link') && event.altKey)
-                    return 'link';
-                else
-                    return allow[0];
-            }
-            leave(event) {
-                if (this._target === event.target) {
-                    this.status('ready');
-                }
-            }
-            receive(transfer) {
-                return transfer;
-            }
-            drop(event) {
-                if (event.defaultPrevented)
-                    return;
-                event.preventDefault();
-                setTimeout(() => this.status('ready'));
-                const obj = this.adopt(event.dataTransfer);
-                if (!obj)
-                    return;
-                this.receive(obj);
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $mol_drop.prototype, "status", null);
-        $$.$mol_drop = $mol_drop;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-//mol/drop/drop.view.ts
-;
-"use strict";
-var $;
-(function ($) {
     class $bun_alh_game_cell_combine extends $mol_drop {
         ord() {
             return 0;
@@ -5607,7 +5607,8 @@ var $;
         }
         content() {
             return [
-                this.Field_drop()
+                this.Drop_zone(),
+                this.Field()
             ];
         }
         open_start_page(next) {
@@ -5636,6 +5637,17 @@ var $;
             if (next !== undefined)
                 return next;
             return null;
+        }
+        Zone() {
+            const obj = new this.$.$mol_view();
+            return obj;
+        }
+        Drop_zone() {
+            const obj = new this.$.$mol_drop();
+            obj.adopt = (next) => this.field_adopt(next);
+            obj.receive = (next) => this.field_receive(next);
+            obj.Sub = () => this.Zone();
+            return obj;
         }
         victory_message_text() {
             return "Все элементы открыты! Это победа.";
@@ -5766,13 +5778,6 @@ var $;
             ];
             return obj;
         }
-        Field_drop() {
-            const obj = new this.$.$mol_drop();
-            obj.adopt = (next) => this.field_adopt(next);
-            obj.receive = (next) => this.field_receive(next);
-            obj.Sub = () => this.Field();
-            return obj;
-        }
     }
     __decorate([
         $mol_mem
@@ -5806,6 +5811,12 @@ var $;
     ], $bun_alh_game_page.prototype, "field_receive", null);
     __decorate([
         $mol_mem
+    ], $bun_alh_game_page.prototype, "Zone", null);
+    __decorate([
+        $mol_mem
+    ], $bun_alh_game_page.prototype, "Drop_zone", null);
+    __decorate([
+        $mol_mem
     ], $bun_alh_game_page.prototype, "Victory_message", null);
     __decorate([
         $mol_mem_key
@@ -5834,9 +5845,6 @@ var $;
     __decorate([
         $mol_mem
     ], $bun_alh_game_page.prototype, "Field", null);
-    __decorate([
-        $mol_mem
-    ], $bun_alh_game_page.prototype, "Field_drop", null);
     $.$bun_alh_game_page = $bun_alh_game_page;
 })($ || ($ = {}));
 //bun/alh/game/page/-view.tree/game.view.tree.ts
@@ -6074,6 +6082,9 @@ var $;
                 shrink: 0,
                 basis: 0,
             },
+            Head_container: {
+                zIndex: 2,
+            },
             Recipes_button: {
                 position: 'absolute',
                 top: '14.5px',
@@ -6086,6 +6097,14 @@ var $;
                     size: '18px',
                     weight: 'bold',
                 },
+            },
+            Drop_zone: {
+                position: 'absolute',
+                top: '0px',
+                left: '0px',
+                zIndex: 1,
+                width: '100%',
+                height: '100%',
             },
             Field: {
                 flex: {
@@ -6100,6 +6119,7 @@ var $;
                 padding: '35px',
             },
             Known_elements: {
+                zIndex: 2,
                 flex: {
                     direction: 'column',
                 },
@@ -6135,6 +6155,7 @@ var $;
                 paddingBottom: '7px',
             },
             Combine: {
+                zIndex: 2,
                 flex: {
                     grow: 1,
                     shrink: 0,
