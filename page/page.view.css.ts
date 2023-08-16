@@ -37,12 +37,11 @@ namespace $.$$ {
 				top: '21px',
 				left: '-40px',
 				alignItems: 'center',
-				background:{
-					color: $bun_alh_theme.main_bold,
-				
-				
-			    	},
-		   	 },
+				background: {
+					color: $bun_alh_theme.main_bold,				
+				},
+			},
+			
 			Content: {
 				
 				maxWidth: '100%',

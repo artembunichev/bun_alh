@@ -60,8 +60,7 @@ namespace $ {
 		}
 		
 		@ $mol_mem
-		victory() {
-			
+		victory() {			
 			return this.element_ids_known().length === $bun_alh_game_elements.length
 		}
 		
