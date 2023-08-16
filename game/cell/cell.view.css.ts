@@ -20,7 +20,7 @@ namespace $.$$ {
 			Element_title: {
 
 				font: {
-					size: '18px',
+					size: '16px',
 					weight: 'bold',
 				},
 				margin: {

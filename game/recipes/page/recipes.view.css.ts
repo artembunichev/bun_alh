@@ -57,7 +57,7 @@ namespace $.$$ {
 				Element_title: {
 				
 					font: {
-						size: '15px',
+						size: '13px',
 					},
 				
 				},
@@ -97,7 +97,7 @@ namespace $.$$ {
 				Element_title: {
 				
 					font: {
-						size: '15px',
+						size: '13px',
 					},	
 				
 				},
