@@ -1071,6 +1071,13 @@ declare namespace $ {
     function $mol_style_define<Component extends $mol_view, Config extends $mol_style_guard<Component, Config>>(Component: new () => Component, config: Config): HTMLStyleElement | null;
 }
 
+declare namespace $ {
+    var $bun_alh_theme: $mol_style_prop_result;
+}
+
+declare namespace $ {
+}
+
 declare namespace $.$$ {
     class $bun_alh_page extends $.$bun_alh_page {
         Head_container_sub(): ($mol_view | $bun_alh_page_button_back)[];
@@ -1087,13 +1094,6 @@ declare namespace $ {
         content(): readonly any[];
         Content(): $mol_view;
     }
-}
-
-declare namespace $ {
-    var $bun_alh_theme: $mol_style_prop_result;
-}
-
-declare namespace $ {
 }
 
 declare namespace $.$$ {

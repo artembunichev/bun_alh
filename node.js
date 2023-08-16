@@ -3744,6 +3744,30 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    $.$bun_alh_theme = $mol_style_prop('bun_alh_theme', [
+        'main',
+        'main_light',
+        'main_bold',
+        'main_bold_alpha',
+        'border',
+        'border_bold',
+        'scroll_back',
+        'scroll_thumb',
+        'victory',
+    ]);
+})($ || ($ = {}));
+//bun/alh/theme/theme.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("bun/alh/theme/theme.css", ":root {\n\n\t--bun_alh_theme_main: #b3a58c;\n\t--bun_alh_theme_main_light: #fffcbb7d;\n\t--bun_alh_theme_main_bold: #a3915f;\n\t--bun_alh_theme_main_bold_alpha: #a3915f85;\n\t--bun_alh_theme_border: #58573f;\n\t--bun_alh_theme_border_bold: #aba880;\n\t--bun_alh_theme_scroll_back: #0000;\n\t--bun_alh_theme_scroll_thumb: #8d7451;\n\t--bun_alh_theme_victory: #8ef981\n\n}\n");
+})($ || ($ = {}));
+//bun/alh/theme/-css/theme.css.ts
+;
+"use strict";
+var $;
+(function ($) {
     var $$;
     (function ($$) {
         class $bun_alh_page extends $.$bun_alh_page {
@@ -3785,12 +3809,16 @@ var $;
             },
             Head_container: {
                 position: 'relative',
+                color: '#fff',
             },
             Back_button: {
                 position: 'absolute',
                 top: '21px',
                 left: '-40px',
                 alignItems: 'center',
+                background: {
+                    color: $bun_alh_theme.main_bold,
+                },
             },
             Content: {
                 maxWidth: '100%',
@@ -3805,11 +3833,6 @@ var $;
             Icon: {
                 width: '28px',
                 height: '28px',
-                border: {
-                    width: '2px',
-                    style: 'solid',
-                    color: '#000000',
-                },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -3851,30 +3874,6 @@ var $;
     $.$bun_alh_board = $bun_alh_board;
 })($ || ($ = {}));
 //bun/alh/board/-view.tree/board.view.tree.ts
-;
-"use strict";
-var $;
-(function ($) {
-    $.$bun_alh_theme = $mol_style_prop('bun_alh_theme', [
-        'main',
-        'main_light',
-        'main_bold',
-        'main_bold_alpha',
-        'border',
-        'border_bold',
-        'scroll_back',
-        'scroll_thumb',
-        'victory',
-    ]);
-})($ || ($ = {}));
-//bun/alh/theme/theme.ts
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_style_attach("bun/alh/theme/theme.css", ":root {\n\n\t--bun_alh_theme_main: #fffcbb;\n\t--bun_alh_theme_main_light: #fffcbb7d;\n\t--bun_alh_theme_main_bold: #ffd66c;\n\t--bun_alh_theme_main_bold_alpha: #ffd66c85;\n\t--bun_alh_theme_border: #fffaa0;\n\t--bun_alh_theme_border_bold: #f5c23d;\n\t--bun_alh_theme_scroll_back: #0000;\n\t--bun_alh_theme_scroll_thumb: #ff9500;\n\t--bun_alh_theme_victory: #30b320;\n\n}\n");
-})($ || ($ = {}));
-//bun/alh/theme/-css/theme.css.ts
 ;
 "use strict";
 var $;
@@ -5416,7 +5415,7 @@ var $;
             Drag: {
                 margin: [0, '15px'],
                 background: {
-                    color: '#f2f3f5',
+                    color: '#cfc49d',
                 },
                 '@': {
                     mol_drop_status: {
@@ -5501,7 +5500,7 @@ var $;
     (function ($$) {
         $mol_style_define($bun_alh_game_cell_result, {
             background: {
-                color: '#f2f3f5',
+                color: '#b3a58c',
             },
             border: {
                 width: '2px',
@@ -5524,15 +5523,12 @@ var $;
                 useless: {
                     true: {
                         background: {
-                            color: '#e1e1e1',
+                            color: '#998c75',
                             image: `repeating-linear-gradient(
 								-45deg,
-								#c7c7c75d 0px 22px,
+								#b3a58c 0px 22px,
 								#0000 22px 55px
 							)`,
-                        },
-                        border: {
-                            color: '#c7c7c7',
                         },
                         userSelect: 'none',
                         cursor: 'not-allowed',
@@ -7202,6 +7198,7 @@ var $;
     var $$;
     (function ($$) {
         $mol_style_define($bun_alh_app, {
+            backgroundColor: "#7c7157",
             $mol_button: {
                 cursor: 'pointer',
             },
