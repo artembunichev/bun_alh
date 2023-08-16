@@ -1,13 +1,13 @@
 :root {
 
-	--bun_alh_theme_main: #fffcbb;
+	--bun_alh_theme_main: #b3a58c;
 	--bun_alh_theme_main_light: #fffcbb7d;
-	--bun_alh_theme_main_bold: #ffd66c;
-	--bun_alh_theme_main_bold_alpha: #ffd66c85;
-	--bun_alh_theme_border: #fffaa0;
-	--bun_alh_theme_border_bold: #f5c23d;
+	--bun_alh_theme_main_bold: #a3915f;
+	--bun_alh_theme_main_bold_alpha: #a3915f85;
+	--bun_alh_theme_border: #58573f;
+	--bun_alh_theme_border_bold: #aba880;
 	--bun_alh_theme_scroll_back: #0000;
-	--bun_alh_theme_scroll_thumb: #ff9500;
-	--bun_alh_theme_victory: #30b320;
+	--bun_alh_theme_scroll_thumb: #8d7451;
+	--bun_alh_theme_victory: #8ef981
 
 }

@@ -27,6 +27,7 @@ namespace $.$$ {
 			Head_container: {
 				
 				position: 'relative',
+				color: '#fff',
 				
 			},
 			
@@ -36,9 +37,12 @@ namespace $.$$ {
 				top: '21px',
 				left: '-40px',
 				alignItems: 'center',
+				background:{
+					color: $bun_alh_theme.main_bold,
 				
-			},
-			
+				
+			    	},
+		   	 },
 			Content: {
 				
 				maxWidth: '100%',
@@ -63,11 +67,6 @@ namespace $.$$ {
 				
 				width: '28px',
 				height: '28px',
-				border: {
-					width: '2px',
-					style: 'solid',
-					color: '#000000',
-				},
 				
 			},
 			

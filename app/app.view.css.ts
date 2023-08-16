@@ -4,6 +4,9 @@ namespace $.$$ {
 
 		$bun_alh_app,
 		{
+			backgroundColor: "#7c7157",
+
+			
 			
 			$mol_button: {
 				cursor: 'pointer',

@@ -6,7 +6,7 @@ namespace $.$$ {
 		{
 
 			background: {
-				color: '#f2f3f5',
+				color: '#b3a58c',
 			},
 			border: {
 				width: '2px',
@@ -38,16 +38,14 @@ namespace $.$$ {
 					true: {
 
 						background: {
-							color: '#e1e1e1',
+							color: '#998c75',
 							image: `repeating-linear-gradient(
 								-45deg,
-								#c7c7c75d 0px 22px,
+								#b3a58c 0px 22px,
 								#0000 22px 55px
 							)`,
 						},
-						border: {
-							color: '#c7c7c7',
-						},
+						
 						userSelect: 'none',
 						cursor: 'not-allowed',
 

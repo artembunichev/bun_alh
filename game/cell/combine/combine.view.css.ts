@@ -9,7 +9,7 @@ namespace $.$$ {
 
 				margin: [ 0, '15px' ],
 				background: {
-					color: '#f2f3f5',
+					color: '#cfc49d',
 				},
 
 				'@': {
