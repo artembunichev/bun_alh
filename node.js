@@ -4861,7 +4861,7 @@ var $;
             cursor: 'pointer',
             Element_title: {
                 font: {
-                    size: '18px',
+                    size: '16px',
                     weight: 'bold',
                 },
                 margin: {
@@ -6871,7 +6871,7 @@ var $;
                 cursor: 'auto',
                 Element_title: {
                     font: {
-                        size: '15px',
+                        size: '13px',
                     },
                 },
             },
@@ -6896,7 +6896,7 @@ var $;
                 cursor: 'auto',
                 Element_title: {
                     font: {
-                        size: '15px',
+                        size: '13px',
                     },
                 },
                 '>': {
@@ -7198,7 +7198,9 @@ var $;
     var $$;
     (function ($$) {
         $mol_style_define($bun_alh_app, {
-            backgroundColor: "#7c7157",
+            background: {
+                color: '#7c7157',
+            },
             $mol_button: {
                 cursor: 'pointer',
             },
