@@ -20,3 +20,4 @@
 	include \/mol/view/tree/test
 \/bun/alh/app
 	deploy \/bun/alh/icons
+	deploy \/bun/alh/app/favicon.ico
